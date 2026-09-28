@@ -1,0 +1,86 @@
+---
+title: "unix-commands"
+format: html
+---
+
+Useful General Commands File Management \# Compress files gzip large_file.txt
+
+# Decompress
+
+gunzip file.txt.gz
+
+# Archive directory
+
+tar -czf archive.tar.gz directory/
+
+# Extract archive
+
+tar -xzf archive.tar.gz
+
+# Disk usage
+
+du -sh /home/ubuntu/analysis/\*
+
+Text Processing \# Count lines wc -l file.txt
+
+# Search for pattern
+
+grep "pattern" file.txt
+
+# Column formatting
+
+column -t -s',' file.csv
+
+# Sort numerically
+
+sort -n file.txt
+
+# Unique entries
+
+sort file.txt \| uniq -c
+
+Process Management \# Check running processes top
+
+# Kill process
+
+kill PID
+
+# Run in background
+
+command &
+
+# Check background jobs
+
+jobs
+
+Troubleshooting Common Issues Out of Memory \# Check memory usage free -h
+
+# Reduce threads
+
+# Change -t 4 to -t 2 in commands
+
+Command Not Found \# Check if installed which program_name
+
+# Activate conda environment
+
+conda activate genomics
+
+# Add to PATH
+
+export PATH=\$PATH:/home/ubuntu/Software/tool/bin
+
+Permission Denied \# Make script executable chmod +x script.sh
+
+# Change ownership
+
+sudo chown ubuntu:ubuntu file.txt
+
+Disk Space Issues \# Check space df -h
+
+# Find large files
+
+du -h /home/ubuntu \| sort -rh \| head -20
+
+# Clean up
+
+rm -rf /home/ubuntu/analysis/temp/\*
