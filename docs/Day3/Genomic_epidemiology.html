@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Genomic Epidemiology for Outbreak Investigation – Bioinformatic methods for bacterial genomics, Cluj-Napoca, October 2026</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Bioinformatic methods for bacterial genomics, Cluj-Napoca, October 2026</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../agenda.html"> 
+<span class="menu-text">Agenda</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Join.html"> 
+<span class="menu-text">Join</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-training-materials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Training materials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-training-materials">    
+        <li>
+    <a class="dropdown-item" href="../Day1/QC.html">
+ <span class="dropdown-text">QC</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Day1/Assembly.html">
+ <span class="dropdown-text">Assembly</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Day2/Annotation.html">
+ <span class="dropdown-text">Annotation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Day2/AMR-detection.html">
+ <span class="dropdown-text">AMR-detection</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Day3/Phylogenetics.html">
+ <span class="dropdown-text">Phylogenetics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Day3/Genomic_epidemiology.html">
+ <span class="dropdown-text">Genomic Epidemiology for Outbreak Investigation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Day3/GenEpi_Surveillance.html">
+ <span class="dropdown-text">Genomic Epidemiology for Pathogen Surveillance</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resources.html">
+ <span class="dropdown-text">Resources</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Genomic Epidemiology for Outbreak Investigation</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Genomic Epidemiology for Outbreak Investigation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="web-tools-for-genomic-epidemiology" class="level1">
+<h1>Web tools for genomic epidemiology</h1>
+<p><em>Based on a exercise developed by Julio Diaz Caballero &amp; Caterina Guzmán Verri for the Genomic Epidemiology course, Costa Rica, 2025</em></p>
+</section>
+<section id="background" class="level1">
+<h1>Background</h1>
+<p>Genomic epidemiology aims to understand the emergence and dissemination of high-risk clones within pathogen populations with the ultimate goal of implementing evidence-based interventions to protect public health. High-risk clones are subpopulations/strains/variants of a pathogen that carry risk elements, such as antibiotic resistance or virulence determinants, and thus pose a potential risk to public health.</p>
+<p>The increased genetic resolution afforded by genomic data is useful from global to local geographic scales, and has proven to be particularly useful for the investigation of pathogens that exhibit little genetic variation (e.g.&nbsp;<a href="https://pubmed.ncbi.nlm.nih.gov/27703135/">Wong <em>et al.</em> 2016</a>), and for outbreak investigations (e.g.&nbsp;<a href="https://pubmed.ncbi.nlm.nih.gov/21862630/">Hendriksen <em>et al.</em> 2011</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/25370488/">Eppinger <em>et al.</em> 2014</a>). During outbreak investigations (and other genomic epidemiology studies), epidemiological data from patients is collected by healthcare professionals. Antimicrobial susceptibility data, species identification, and any further phenotypic or molecular characterization of the isolates is often generated by the laboratories linked to healthcare facilities and/or by the reference laboratory. Ideally, these different sources of data are stored in a centralised surveillance system and database, such as WHONET. However, these systems rarely incorporate genomic data produced by bioinformaticians. Genomic data may include sequence/assembly quality, genotyping/genoserotyping information, presence/absence of known risk elements, and clustering of the isolates based on genetic similarity –usually in the form of a phylogenetic tree or a minimum spanning-tree.</p>
+<p>The job of a genomic epidemiologist often starts by combining data from diverse sources that might not be complete or standardised to facilitate the identification of relevant patterns for meaningful interpretation. Once integrated, the epi, lab, and genomic data can be interrogated over the structure of the tree to identify clusters of interest that will place the isolates in or out of the outbreak.</p>
+<p>The <a href="https://www.pathogensurveillance.net/our-software/"><strong>Centre for Genomic Pathogen Surveillance</strong></a> develops free web applications for data collection, integration, visualisation, and analysis of genomic epidemiology data. <a href="https://five.epicollect.net/"><strong>Epicollect5</strong></a> is a mobile &amp; web application for free and easy data collection. It provides both the web and mobile applications for the generation of forms (questionnaires) and freely hosted project websites for data collection. Projects are created by using the web application at <a href="five.epicollect.net">five.epicollect.net</a>, and then downloaded to the device to perform the data collection. Data are collected in the field using multiple devices and all data can be viewed on a central server (via map, tables, and charts). <a href="https://data-flo.io/"><strong>Data-flo</strong></a> is a system for customised integration and manipulation of diverse data via a simple drag and drop interface. Data-flo provides a visual method to design a reusable pipeline to integrate, clean, and manipulate data in a multitude of ways, eliminating the need for continuous manual intervention (e.g., coding, formatting, spreadsheet formulas, manual copy-pasting). <a href="https://microreact.org/"><strong>Microreact</strong></a> allows you to upload, visualise and explore any combination of clustering (trees), geographic (map) and temporal (timeline) data. Other metadata variables are displayed in a table. You can specify colours and/or shapes to display on the map, tree and/or timeline. A permanent URL is produced for you to share your Microreact.</p>
+</section>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Aim: To use web and mobile tools for the collection of epi data in the field, integrate epi data with lab and bioinformatics data, and visualise all data together to investigate a putative outbreak.</p>
+<p><em>Note: This exercise is a work of fiction. Any resemblance to a real life situation is purely coincidental.</em></p>
+<p>During 2025, <em>Klebsiella pneumoniae</em> was isolated from clinical samples of 34 patients at several hospitals and clinics in and around Cluj-Napoca. Approximately half of the patients had presented with urinary tract infections (UTIs) although a variety of other infection types were seen including three sepsis cases. One colony from each confirmed case was sequenced on an Illumina MiSeq. An epidemiological investigation revealed that some of the culture-confirmed cases <strong><em>were students at Cluj-Napoca Institute of Coffee (CIC)</em></strong>. This suggested that the campus may be the central point of transmission in this outbreak. The epidemiological and demographic data is summarised in the file <a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/web_tools_data/epi_data.csv">epi_data.csv</a>.</p>
+<p><strong>Following the confirmation of the 34 positive cases of <em>K. pneumoniae</em> ST258 infections, the management of CIC denied that the <em>Klebsiella pneumoniae</em> could have spread within the campus and declared that deep cleaning of the was taking place regularly.</strong></p>
+<p><strong>A team of disease detectives will be deployed around CIC today to investigate the possibility of environmental contamination of <em>K. pneumoniae</em> within the campus</strong>, using tools such as data-flo, Pathogenwatch, and Microreact, free web applications developed by the <em>Centre for Genomic Pathogen Surveillance</em> for easy data analyses, integration and visualisation.</p>
+</section>
+<section id="objectives" class="level1">
+<h1>Objectives</h1>
+<p>At the end of this session the participants will be able to:</p>
+<ol type="1">
+<li>Analyse genomes using PathogenWatch</li>
+<li>Merge epidemiological, laboratory and genomic data with data-flo</li>
+<li>Create a Microreact project to visualise epidemiological, laboratory and genomic data</li>
+</ol>
+<p>In the first phase of the outbreak investigation, disease detectives collected water samples from around the CIC campus. These were sent to a reference lab for further analysis.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cluj-napoca.png" class="img-fluid figure-img" width="427"></p>
+<figcaption><em>Map of Cluj-Napoca, from where water samples were taken</em></figcaption>
+</figure>
+</div>
+<section id="analyse-genomes-with-pathogenwatch" class="level2">
+<h2 class="anchored" data-anchor-id="analyse-genomes-with-pathogenwatch">Analyse genomes with PathogenWatch</h2>
+<p>The reference lab has sent you the culture results in an Excel file called (<a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/web_tools_data/lab_results.xlsx"><code>lab_results.xlsx</code></a>). The lab reported that <strong>2 out of 13</strong> water samples from the CIC campus were positive for <em>K. pneumoniae</em>. <strong>This immediately prompted the closure of the 2 water sources and internal investigation.</strong></p>
+<blockquote class="blockquote">
+<p><em>Does this confirm that the source of the outbreak can be found in the campus of CIC?</em></p>
+</blockquote>
+<p>One colony from each source was sequenced on Illumina MiSeq by the reference lab and the bioinformatics team has assembled each of them.</p>
+<p>We will use <a href="https://pathogen.watch"><strong>https://pathogen.watch</strong></a> to identify the sequence type (ST) of these genomes using the Pasteur scheme.</p>
+<p>Click on the upload link at the top right</p>
+<p><img src="images/pathogenwatch_upload.png" class="img-fluid" width="421"></p>
+<p>Click on <code>Single Genome FASTAs</code></p>
+<p><img src="images/pathogenwatch_singlefasta.png" class="img-fluid" width="441"></p>
+<p>Drag and Drop provided fasta files (<a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/web_tools_data/genomes/123456789-11.fasta">file1</a> and <a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/web_tools_data/genomes/123456789-9.fasta">file2</a>) into the browser and wait for analysis to finish</p>
+<p><img src="images/pathogenwatch_dragdrop.png" class="img-fluid" width="499"></p>
+<p>Click on <code>VIEW GENOMES</code></p>
+<p><img src="images/pathogenwatch_viewgenomes.png" class="img-fluid" width="424"></p>
+<p>Select the two analysed genomes</p>
+<p><img src="images/pathogenwatch_select.png" class="img-fluid" width="400"></p>
+<p>Click on <code>Selected Genomes</code></p>
+<p><img src="images/pathogenwatch_selected.png" class="img-fluid" width="400"></p>
+<p>Click on Download data</p>
+<p><img src="images/pathogenwatch_download.png" class="img-fluid" width="400"></p>
+<p>Click on MLST (Pasteur). This will download a csv file with the results.</p>
+<p><img src="images/pathogenwatch_mlst.png" class="img-fluid" width="400"></p>
+<p>You should now be able to find the <a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/web_tools_data/mlst-Pasteur.csv"><code>mlst-Pasteur.csv</code></a> in your <code>Downloads</code> folder.</p>
+</section>
+<section id="merge-data-with-data-flo" class="level2">
+<h2 class="anchored" data-anchor-id="merge-data-with-data-flo">Merge data with Data-flo</h2>
+<p><code>https://data-flo.io/</code></p>
+<p><em>Note: you need to sign-up for data-flo and Microreact. Creating your own account will allow you to manage and edit your projects.</em></p>
+<p>A maximum likelihood phylogenetic tree (<a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/web_tools_data/tree.nwk"><code>tree.nwk</code></a>) was inferred from the genomes of the 34 clinical samples and 2 environmental (water) samples. Six genomes from a previous outbreak (Mar-Apr 2022) were also included in the tree inference and their associated data added to the <a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/web_tools_data/epi_data.csv"><code>epi_data.csv</code></a> file.</p>
+<p>The disease detectives now have the information needed for the investigation in the following formats:</p>
+<ul>
+<li><a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/web_tools_data/epi_data.csv"><code>epi_data.csv</code></a> Epi data from 34 clinical cases and 6 cases from previous outbreak</li>
+<li><a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/web_tools_data/epi_data_new.csv"><code>epi_data_new.csv</code></a> Metadata of 2 positive water sources from the CIC campus</li>
+<li><a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/web_tools_data/lab_results.xlsx"><code>lab_results.xlsx</code></a> Culture and serotyping results for all the samples from the CIC campus</li>
+<li><a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/web_tools_data/mlst-Pasteur.csv"><code>mlst-Pasteur.csv</code></a> MLST results from PathogenWatch</li>
+<li><a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/web_tools_data/tree.nwk"><code>tree.nwk</code></a> Phylogenetic tree of 34 clinical cases, 2 culture-positive water samples, and 6 cases from previous outbreak</li>
+</ul>
+<p>The files are located in <a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/tree/main/Day3/web_tools_data"><strong>this link</strong></a>.</p>
+<p>We will combine data from these different sources with a data-flo workflow that takes the files above as input, and creates as an output a Microreact project where the data can be visualised.</p>
+<p>Open the data-flo workflow (<a href="https://www.data-flo.io/run/ai9jZdWD5KBoVDzuAaYCub" class="uri">https://www.data-flo.io/run/ai9jZdWD5KBoVDzuAaYCub</a>)</p>
+<p>Copy the workflow to your own dataflo account.</p>
+<p><img src="images/dataflo_copy.png" class="img-fluid"></p>
+<p>This will open a copy of this workflow in your dataflo account.</p>
+<p><strong>On a different browser tab</strong>, get your microreact <code>API access token</code> at <a href="https://microreact.org/my-account/settings"><strong>https://microreact.org/my-account/settings</strong></a> (you must already have created your microreact account).</p>
+<p><img src="images/microreact_token.png" class="img-fluid"></p>
+<p>Edit the workflow to include your own microreact <code>API access token</code>.</p>
+<ol type="1">
+<li>Click on <code>*access token</code> in the <code>Create microreact project</code> box</li>
+<li>From the options on the right, select <code>Bind to value</code></li>
+<li>Paste your <code>API access token</code> in the <code>VALUE</code> box</li>
+</ol>
+<p><img src="images/dataflo_key.png" class="img-fluid"></p>
+<p>Now lets go to the implementation page by clicking on the <code>RUN</code> option.</p>
+<p><img src="images/dataflo_implementation.png" class="img-fluid"></p>
+<p>Click on <strong><code>Run</code></strong>. The Outputs box now shows the url of a Microreact project created by data-flo.</p>
+<p><img src="images/dataflo_run1.png" class="img-fluid" width="480"></p>
+<p><img src="images/dataflo_run2.png" class="img-fluid" width="418"></p>
+<p>Before you open the Microreact project answer the following questions:</p>
+<blockquote class="blockquote">
+<ol type="1">
+<li>If later on we wanted to add additional entries (i.e.&nbsp;water samples from CIC) , could we use the same data-flo? If so, how would this be beneficial?</li>
+<li>Do you use/know of any other methods to join data? If so, how do they compare with data-flo?</li>
+</ol>
+</blockquote>
+</section>
+<section id="explore-phylogenetic-and-epidemiological-data-with-microreact" class="level2">
+<h2 class="anchored" data-anchor-id="explore-phylogenetic-and-epidemiological-data-with-microreact">Explore phylogenetic and epidemiological data with Microreact</h2>
+<p><code>https://microreact.org/</code></p>
+<p>Open the Microreact link in the output from data-flo. It should look something like this:</p>
+<p><img src="images/microreact_link.png" class="img-fluid"></p>
+<p>Now change the colour column to “Hospital”. Click on the eye icon at the top right of the page. Select “Hospital from the <code>Colour Column</code> dropdown list.</p>
+<p><img src="images/microreact_colour.png" class="img-fluid"></p>
+<p>Scale the markers on the map by clicking on the sliders icon, then in the opening options click on <code>Markers</code>. Finally, toggle the <code>Scale markers</code> option on.</p>
+<p><img src="images/microreact_markers.png" class="img-fluid" width="386"></p>
+<p><img src="images/microreact _timeline.png" class="img-fluid"></p>
+<p>Answer the following questions:</p>
+<blockquote class="blockquote">
+<ol type="1">
+<li>What do the markers on the map represent?</li>
+<li>Which hospital reported the index (first) case? Tip: Click on the earliest sample on the timeline.</li>
+</ol>
+</blockquote>
+<p>Change the colour column to “Source”. Click on the eye icon at the top left of the page. Then select “Source” from the <code>Colour Column</code> dropdown list.</p>
+<p><img src="images/microreact_source.png" class="img-fluid" width="442"></p>
+<p>Microreact assigns colours automatically to every column in your metadata table, but you can customise them. Let’s change the colour column to “Infection Type”. Click on the eye icon at the top left of the page. Then select “Infection Type” from the <code>Colour Column</code> dropdown list.</p>
+<p><img src="images/microreact_household.png" class="img-fluid" width="446"></p>
+<p>Now Select “Categorical” from the <code>Colour Palette</code> option. Next Select “qualitative” from the <code>Palette type</code> dropdown list and “5” from the <code>Number of colours</code> dropdown list. Finally, select the second option from the list of palettes.</p>
+<p><img src="images/microreact_qualitative.png" class="img-fluid" width="183"></p>
+<p><img src="images/microreact_palete.png" class="img-fluid" width="209"></p>
+<p><img src="images/microreact_workplace.png" class="img-fluid" width="174"></p>
+<p>Add the columns “Workplace” and “Workplace details” as metadata blocks. For this, select the slider icon from top right of the tree panel, then, click on the <code>Metadata blocks</code> button. Finally, select “Workplace” and “Workplace details” from the list of options.</p>
+<p>Now explore the microreact you just created and try to answer the following questions:</p>
+</section>
+<section id="insights" class="level2">
+<h2 class="anchored" data-anchor-id="insights">Insights</h2>
+<ol type="1">
+<li>Can you confirm that the K. pneumoniae isolated from the CIC campus are closely related to the patient isolates?</li>
+<li>Was it useful to include genomes from a previous outbreak in the analysis? Is the current outbreak related to the past outbreak from Mar-Apr 2022?</li>
+<li>Is the CIC Campus the origin of the outbreak?</li>
+<li>Should we investigate another location in the city?</li>
+</ol>
+</section>
+</section>
+<section id="resources" class="level1">
+<h1>Resources</h1>
+<section id="sign-in-to-data-flo" class="level2">
+<h2 class="anchored" data-anchor-id="sign-in-to-data-flo">Sign-in to data-flo</h2>
+<p><a href="https://docs.data-flo.io/introduction/getting-started-sign-in"><strong>https://docs.data-flo.io/introduction/getting-started-sign-in</strong></a></p>
+</section>
+<section id="sign-in-to-microreact" class="level2">
+<h2 class="anchored" data-anchor-id="sign-in-to-microreact">Sign-in to Microreact</h2>
+<p>Head over to <a href="https://microreact.org/my-account"><strong>https://microreact.org/my-account</strong></a>, and sign up using your email address or any other authenticating option</p>
+<p><img src="images/microreact_signup.png" class="img-fluid" width="323"></p>
+</section>
+<section id="web-colours" class="level2">
+<h2 class="anchored" data-anchor-id="web-colours"></h2>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>This work is licensed under a Creative Commons Attribution 4.0 International License. Reuse is encouraged with acknowledgement</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

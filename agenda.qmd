@@ -1,0 +1,17 @@
+---
+title: "Agenda"
+---
+
+### Prerequisites for following this course.
+
+1.  You are expected to be comfortable with bash and also with a text editor such as vi or nano. If you are not, try to practice a few commands before you attempt to follow the steps below.
+
+    There are numerous online introductory tutorials to the UNIX/Linux operating system and command line, including:
+
+    <http://www.ee.surrey.ac.uk/Teaching/Unix>
+
+    <http://swcarpentry.github.io/shell-novice/>
+
+2.  Please make sure you have received from your course instructor the Public IPv4 of your Amazon EC2 instance, the name of the machine you are going to work on and also a public key to access the machine via ssh.
+
+#### ![](images/course-overview.png)

@@ -1,0 +1,90 @@
+---
+title: "Annotation"
+format: html
+---
+
+# Genome Annotation
+
+There are a number of ways you can generate annotation for a novel sequence. You can manually annotate a sequence by curating the results of bioinformatic analyses of the sequence, but this is time consuming and prone to human bias. If there is a closely related reference sequence and annotation, you can transfer annotation by similarity matching, but this relies on there being a suitable reference. The fastest and most consistant way to generate annotation for novel sequence is to use an automatic annotation software such as
+
+`* prokka` (Seemann T. (2014) Prokka: rapid prokaryotic genome annotation. Bioinformatics. 30:2068-9. doi: 10.1093/bioinformatics/btu153) or
+
+`* bakta` (Schwengers O et al., (2021). Bakta: rapid and standardized annotation of bacterial genomes via alignment-free sequence identification. Microbial Genomics, 7(11). <https://doi.org/10.1099/mgen.0.000685>)
+
+# Prokka Annotation
+
+### Basic Prokka run
+
+```         
+prokka --outdir /home/ubuntu/analysis/annotation/sample1_prokka--prefix sample1--genus Staphylococcus--species aureus--strain sample1--cpus 4/home/ubuntu/analysis/assembly/sample1_unicycler/assembly.fasta
+```
+
+### View summary
+
+`cat /home/ubuntu/analysis/annotation/sample1_prokka/sample1.txt`
+
+Prokka outputs:
+
+**.gff: Annotation in GFF3 format**
+
+**.faa Protein sequences (amino acids)**
+
+**.ffn Gene sequences (nucleotides)**
+
+**.gbk: GenBank format**
+
+**.txt: Summary statistics**
+
+### Explore Annotation Files
+
+Count features
+
+`grep -v "#" sample1.gff | cut -f3 | sort | uniq -c`
+
+### Count CDS
+
+`grep -c "CDS" sample1.gff`
+
+### Find specific genes (e.g., beta-lactamase)
+
+`grep -i "beta-lactam" sample1.gff`
+
+### Extract all gene product descriptions
+
+`grep "product=" sample1.gff | sed 's/.product=([^;]).*/\1/' | sort | uniq -c | sort -rn | head -20`
+
+#### Run Prokka for one sample
+
+`cd /home/ubuntu/Data/`
+
+```         
+docker run -v $(pwd):$(pwd) -w $(pwd) staphb/prokka:latest prokka --outdir /home/ubuntu/Data/annotations/G18252308 --prefix G18252308 /home/ubuntu/Data/G18252308/illumina/G18252308_kmer51/contigs.fa
+```
+
+Check if the *mecA* gene was found in the annotated genome.
+
+![](images/grep%20mecA.png)
+
+#### How to run Prokka on all samples from one folder
+
+Example script: create the following bash file: `/home/ubuntu/Data/PROKKA_run/run_prokka.sh`
+
+Add the following lines of code:
+
+```         
+for sample in`ls /home/ubuntu/Data/all_fastas/\*.fasta \| sed 's/.fasta//'\`
+
+do
+
+  echo \$sample
+
+  output=\$(echo $sample | sed -E 's#.*/([^/]+)$#\\1#')
+
+  echo \$output
+
+  docker run -v $(pwd):$(pwd) -w $(pwd) staphb/prokka:latest prokka --outdir /home/ubuntu/Data/annotations/${output} --prefix ${output} /home/ubuntu/Data/all_fastas/${output}.fasta
+
+done 
+```
+
+# 

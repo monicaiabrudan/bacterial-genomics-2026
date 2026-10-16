@@ -1,0 +1,41 @@
+id,ST,City,Hospital,Collection Date,Source,Infection Type,Sex,Age,Workplace,Workplace detail
+CNRVC170178,258,Cluj-Napoca,"Spitalul de copii, Cluj-Napoca",01/03/2023,Clinical,,M,79,,
+CNRVC170206,258,Cluj-Napoca,"Spitalul de urgente, Cluj-Napoca",09/03/2023,Clinical,,F,71,,
+CNRVC170207,258,Cluj-Napoca,"Spitalul Stanful Stefan, Cluj-Napoca",16/03/2023,Clinical,,F,70,Sports Club,Club Manager
+CNRVC170180,258,Cluj-Napoca,"Spitalul de copii, Cluj-Napoca",02/04/2023,Clinical,,M,85,,
+CNRVC170179,258,Cluj-Napoca,"Spitalul de copii, Cluj-Napoca",10/04/2023,Clinical,,M,76,,
+CNRVC170177,258,Cluj-Napoca,"Spitalul de copii, Cluj-Napoca",21/04/2023,Clinical,,F,70,,
+CNRVC170176,258,Cluj-Napoca,"Spitalul de urgente, Cluj-Napoca",30/01/2025,Clinical,UTI,F,53,Restaurant,Chef
+CNRVC170241,258,Cluj-Napoca,"Spitalul de urgente, Cluj-Napoca",01/01/2025,Clinical, ,F,84,,
+CNRVC170240,258,Cluj-Napoca,"Spitalul de urgente, Cluj-Napoca",04/01/2025,Clinical,UTI,M,82,,
+CNRVC170242,258,Cluj-Napoca,"Spitalul de urgente, Cluj-Napoca",04/01/2025,Clinical,UTI,M,64,CIC,Facultatea de gastronomie
+CNRVC170173,258,Cluj-Napoca,"Spitalul orasanesc, Cluj-Napoca",07/01/2025,Clinical,UTI,F,79,Retired,
+CNRVC170182,258,Cluj-Napoca,"Spitalul orasanesc, Cluj-Napoca",10/01/2025,Clinical,UTI,F,71,Univestitate,Rectorat
+CNRVC170186,258,Cluj-Napoca,"Spitalul de copii, Cluj-Napoca",10/01/2025,Clinical,UTI,F,71,Banca,
+CNRVC170208,258,Cluj-Napoca,"Spitalul metropolitan, Cluj-Napoca",12/01/2025,Clinical,UTI,M,64,CIC,Continuous Education
+CNRVC170203,258,Cluj-Napoca,"Spitalul crestin, Cluj-Napoca",13/01/2025,Clinical,UTI,M,74,Retired,
+CNRVC170195,258,Cluj-Napoca,"Spitalul public, Cluj-Napoca",15/01/2025,Clinical,UTI,M,69,CIC,Facultatea de gastronomie
+CNRVC170183,258,Cluj-Napoca,"Spitalul public, Cluj-Napoca",16/01/2025,Clinical,UTI,M,70,CIC,Continuous Education
+CNRVC170191,258,Cluj-Napoca,"Spitalul crestin, Cluj-Napoca",16/01/2025,Clinical,UTI,M,75,Universitate,Facultatea de Biologie
+CNRVC170199,258,Cluj-Napoca,"Spitalul public, Cluj-Napoca",20/01/2025,Clinical,UTI,M,71,Universitate,Facultatea de biochimie
+CNRVC170170,258,Cluj-Napoca,"Spitalul metropolitan, Cluj-Napoca",24/01/2025,Clinical,UTI,M,88,,
+CNRVC170202,258,Cluj-Napoca,"Spitalul metropolitan, Cluj-Napoca",26/01/2025,Clinical,UTI,F,63,CIC,Continuous Education
+CNRVC170188,258,Cluj-Napoca,"Spitalul de copii, Cluj-Napoca",27/01/2025,Clinical,meningitis,M,78,,
+CNRVC170198,258,Cluj-Napoca,"Spitalul metropolitan, Cluj-Napoca",27/01/2025,Clinical,UTI,F,53,Supermarker,
+CNRVC170189,258,Cluj-Napoca,"Spitalul de copii, Cluj-Napoca",30/01/2025,Clinical,UTI,F,77,,
+CNRVC170185,258,Cluj-Napoca,"Spitalul de recuperare, Cluj-Napoca",31/01/2025,Clinical,UTI,M,73,Centru comercial,Administrative office
+CNRVC170190,258,Cluj-Napoca,"Spitalul de recuperare, Cluj-Napoca",31/01/2025,Clinical,UTI,F,75,Restaurante El Sabor de Matt,Owner
+CNRVC170192,258,Cluj-Napoca,"Spitalul de recuperare, Cluj-Napoca",31/01/2025,Clinical,UTI,F,79,Retired,
+CNRVC170184,258,Cluj-Napoca,"Spitalul metropolitan, Cluj-Napoca",02/02/2025,Clinical,UTI,F,95,,
+CNRVC170200,258,Cluj-Napoca,"Spitalul crestin, Cluj-Napoca",03/02/2025,Clinical,sepsis,F,81,,
+CNRVC170197,258,Cluj-Napoca,"Spitalul de urgente, Cluj-Napoca",06/02/2025,Clinical,sepsis,F,97,,
+CNRVC170205,258,Cluj-Napoca,"Spitalul metropolitan, Cluj-Napoca",06/02/2025,Clinical,UTI,F,69,Universitate,Facultatea de matematica
+CNRVC170168,258,Cluj-Napoca,"Spitalul de urgente, Cluj-Napoca",08/02/2025,Clinical,UTI,M,75,Retired,
+CNRVC170194,258,Cluj-Napoca,"Spitalul orasanesc, Cluj-Napoca",08/02/2025,Clinical,UTI,F,69,Universitate,Facultatea de matematica
+CNRVC170175,258,Cluj-Napoca,"Spitalul Stanful Stefan, Cluj-Napoca",11/02/2025,Clinical,UTI,M,71,Universitate,Facultatea de matematica
+CNRVC170201,258,Cluj-Napoca,"Spitalul de urgente, Cluj-Napoca",11/02/2025,Clinical,UTI,M,79,Retired,
+CNRVC170187,258,Cluj-Napoca,"Spitalul public, Cluj-Napoca",12/02/2025,Clinical,UTI,M,58,CIC,Continuous Education
+CNRVC170174,258,Cluj-Napoca,"Spitalul metropolitan, Cluj-Napoca",13/02/2025,Clinical,sepsis,M,76,,
+CNRVC170196,258,Cluj-Napoca,"Spitalul crestin, Cluj-Napoca",14/02/2025,Clinical,UTI,M,75,Retired,
+CNRVC170193,258,Cluj-Napoca,"Spitalul de urgente, Cluj-Napoca",15/02/2025,Clinical,UTI,M,79,,
+CNRVC170204,258,Cluj-Napoca,"Spitalul orasanesc, Cluj-Napoca",18/02/2025,Clinical,UTI,M,70,,

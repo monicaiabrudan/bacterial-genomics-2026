@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Digital Epidemiology Workshop, September 2023 – manual</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../img/cgps.jpg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Digital Epidemiology Workshop, September 2023</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../agenda.html" rel="" target="">
+ <span class="menu-text">Agenda</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-training-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Training materials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-training-materials">    
+        <li>
+    <a class="dropdown-item" href="../definitions.html" rel="" target="">
+ <span class="dropdown-text">What is Digital Epidemiology?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../use-cases.html" rel="" target="">
+ <span class="dropdown-text">Digital Epidemiology use-cases</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../stakeholders-mapping.html" rel="" target="">
+ <span class="dropdown-text">Stakeholders mapping</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../hands-on/exercise.html" rel="" target="">
+ <span class="dropdown-text">Digital Epidemiology hands-on exercise</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../microreact/microreact.html" rel="" target="">
+ <span class="dropdown-text">Microreact tutorial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../data-flo/data-flo.html" rel="" target="">
+ <span class="dropdown-text">Data-flo tutorial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resources.html" rel="" target="">
+ <span class="dropdown-text">Resources</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Data-flo step-by-step tutorial</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data-flo/data-flo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data-flo tutorial</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Microreact step-by-step tutorial</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../microreact/microreact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Microreact tutorial</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<p><img src="https://coursesandconferences.wellcomeconnectingscience.org/wp-content/themes/wcc_courses_and_conferences/dist/assets/svg/logo.svg" width="200" height="200"></p>
+<section id="web-tools-for-genomic-epidemiology---paraguay-2023" class="level1">
+<h1>Web Tools for Genomic Epidemiology - Paraguay 2023 <!-- omit in toc --></h1>
+<section id="module-lead-silvia-argimon-julio-diaz-caballero" class="level3">
+<h3 class="anchored" data-anchor-id="module-lead-silvia-argimon-julio-diaz-caballero">Module Lead: Silvia Argimon &amp; Julio Diaz Caballero <!-- omit in toc --></h3>
+<p><br></p>
+</section>
+</section>
+<section id="table-of-contents" class="level1">
+<h1>Table of contents <!-- omit in toc --></h1>
+<ul>
+<li><a href="#background">Background</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#learning-outcomes">Learning outcomes</a>
+<ul>
+<li><a href="#collect-field-data-with-epicollect">Collect field data with Epicollect</a></li>
+<li><a href="#merge-data-with-data-flo">Merge data with Data-flo</a></li>
+<li><a href="#microreact">Microreact</a></li>
+</ul></li>
+<li><a href="#resources">Resources</a>
+<ul>
+<li><a href="#install-and-test-epicollect5-on-your-mobile-phone">Install and test Epicollect5 on your mobile phone</a></li>
+<li><a href="#sign-in-to-data-flo">Sign-in to data-flo</a></li>
+<li><a href="#sign-in-to-microreact">Sign-in to Microreact</a></li>
+<li><a href="#web-colours">Web colours</a></li>
+</ul></li>
+<li><a href="#bonus-activities">Bonus activities</a></li>
+</ul>
+</section>
+<section id="background" class="level1">
+<h1>Background</h1>
+<p>Genomic epidemiology aims to understand the emergence and dissemination of high-risk clones within pathogen populations with the ultimate goal of implementing evidence-based interventions to protect public health. High-risk clones are subpopulations/strains/variants of a pathogen that carry risk elements, such as antibiotic resistance or virulence determinants, and thus pose a potential risk to public health.</p>
+<p>The increased genetic resolution afforded by genomic data is useful from global to local geographic scales, and has proven to be particularly useful for the investigation of pathogens that exhibit little genetic variation (e.g.&nbsp;<a href="https://pubmed.ncbi.nlm.nih.gov/27703135/">Wong <em>et al.</em> 2016</a>), and for outbreak investigations (e.g.&nbsp;<a href="https://pubmed.ncbi.nlm.nih.gov/21862630/">Hendriksen <em>et al.</em> 2011</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/25370488/">Eppinger <em>et al.</em> 2014</a>). During outbreak investigations (and other genomic epidemiology studies), epidemiological data from patients is collected by healthcare professionals. Antimicrobial susceptibility data, species identification, and any further phenotypic or molecular characterization of the isolates is often generated by the laboratories linked to healthcare facilities and/or by the reference laboratory. Ideally, these different sources of data are stored in a centralised surveillance system and database, such as WHONET. However, these systems rarely incorporate genomic data produced by bioinformaticians. Genomic data may include sequence/assembly quality, genotyping/genoserotyping information, presence/absence of known risk elements, and clustering of the isolates based on genetic similarity –usually in the form of a phylogenetic tree or a minimum spanning-tree.</p>
+<p>The job of a genomic epidemiologist often starts by combining data from diverse sources that might not be complete or standardised to facilitate the identification of relevant patterns for meaningful interpretation. Once integrated, the epi, lab, and genomic data can be interrogated over the structure of the tree to identify clusters of interest that will place the isolates in or out of the outbreak.</p>
+<p>The <strong><a href="https://www.pathogensurveillance.net/our-software/">Centre for Genomic Pathogen Surveillance</a></strong> develops free web applications for data collection, integration, visualisation, and analysis of genomic epidemiology data. <strong><a href="https://five.epicollect.net/">Epicollect5</a></strong> is a mobile &amp; web application for free and easy data collection. It provides both the web and mobile applications for the generation of forms (questionnaires) and freely hosted project websites for data collection. Projects are created by using the web application at five.epicollect.net, and then downloaded to the device to perform the data collection. Data are collected in the field using multiple devices and all data can be viewed on a central server (via map, tables, and charts). <strong><a href="https://data-flo.io/">Data-flo</a></strong> is a system for customised integration and manipulation of diverse data via a simple drag and drop interface. Data-flo provides a visual method to design a reusable pipeline to integrate, clean, and manipulate data in a multitude of ways, eliminating the need for continuous manual intervention (e.g., coding, formatting, spreadsheet formulas, manual copy-pasting). <strong><a href="https://microreact.org/">Microreact</a></strong> allows you to upload, visualise and explore any combination of clustering (trees), geographic (map) and temporal (timeline) data. Other metadata variables are displayed in a table. You can specify colours and/or shapes to display on the map, tree and/or timeline. A permanent URL is produced for you to share your Microreact.</p>
+</section>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Aim: To use web and mobile tools for the collection of epi data in the field, its integration with lab and bioinformatics data, and to finally visualise it together to detect a putative outbreak.</p>
+<p><em>Note: This exercise is a work of fiction. Any resemblance to a real life situation is purely coincidental.</em></p>
+<p>During January and February 2023, fifty-eight patients reported to eight hospitals in Asunción with acute watery diarrhoea and vomiting. <em>Shigella sonnei</em> was isolated from the stool samples of fourty patients (all belong to CTX-M-27 producing <em>S. sonnei</em> ST152), and one colony from each confirmed case was sequenced on Illumina MiSeq. An epidemiological investigation revealed that more than half of the culture-confirmed cases regularly visited the Ñu Guazú Park, where water fountains and other water sources are accessible, and which is crossed by the Arroyo Itay. This suggested that these infections could be related to contaminated water in the park. The epidemiological and demographic data is summarised on the file epi_data.csv.</p>
+<p>A team of disease detectives will be deployed around Ñu Guazú Park today to investigate the potential source of these infections using Epicollect5, data-flo, and Microreact, free mobile and web applications developed by the Centre for Genomic Pathogen Surveillance for easy data collection, integration and visualisation.</p>
+</section>
+<section id="learning-outcomes" class="level1">
+<h1>Learning Outcomes</h1>
+<p>At the end of this session the participants will be able to:</p>
+<ol type="1">
+<li>Collect data in the field with Epicollect5.</li>
+<li>Merge epidemiological, laboratory and genomic data with data-flo</li>
+<li>Create a Microreact project to visualise epidemiological, laboratory and genomic data</li>
+</ol>
+<section id="collect-field-data-with-epicollect" class="level2">
+<h2 class="anchored" data-anchor-id="collect-field-data-with-epicollect">1. Collect field data with Epicollect</h2>
+<p><code>https://five.epicollect.net/</code></p>
+<p>The disease detectives will work in pairs, and will be provided with a <strong>collection tube</strong> with a <strong>barcode</strong> sample identifier to collect a sample of water, and will use their <strong>mobile phone</strong> to collect associated metadata in the field.</p>
+<p>Make sure your phone is connected to WiFi. Open the <strong>Epicollect5</strong> app on your mobile phone.</p>
+<p><img src="epicollect_logo.jpeg" class="img-fluid"></p>
+<p><br></p>
+<p>Add the project <strong>Asuncion 2023 S sonnei Outbreak</strong> by typing into the search box –you will need to be connected to WiFi.</p>
+<p><img src="epicollect_search.jpeg" class="img-fluid"></p>
+<p><br></p>
+<p>Using the map of the Ñu Guasú park provided, walk to the location of your collection point (water source). Locations are indicated by the black dots labelled a-j. You will not need internet access to collect data in the field.</p>
+<p><img src="location_map.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>Open the <strong>Asuncion 2023 S sonnei Outbreak</strong> project and add an entry. Follow the form to collect a water sample and associated metadata.</p>
+<p><img src="epicollect_add_entry.jpg" width="40%" height="40%"></p>
+<p><br></p>
+<p>Your team will collect only one water sample, but both of you can collect the associated data on Epicollect5. However, <em>make sure that only one of you uploads the data later on to avoid duplications.</em></p>
+<p>Return to the Epidemic Intelligence Center (i.e.&nbsp;the classroom).</p>
+<p>One of the pair members only. <strong>Upload your entry (and image)</strong> to the Epicollect5 server –make sure you are connected to the WiFi.</p>
+<p><img src="epicollect_upload_data.jpeg" width="30%" height="30%"></p>
+<p><br></p>
+<p>Submit your water sample to the instructor, which will be sent to the reference lab for culture confirmation.</p>
+<p>Once all entries are uploaded by the disease detectives we will take a look at the data together on <strong><a href="https://five.epicollect.net/project/asuncion-2023-s-sonnei-outbreak">https://five.epicollect.net/project/asuncion-2023-s-sonnei-outbreak</a></strong></p>
+<p>Answer the following questions:</p>
+<blockquote class="blockquote">
+<ol type="1">
+<li>What is the most common type of water source?</li>
+<li>Was it possible to collect a sample from all 13 sources? If not, what were the reasons?</li>
+</ol>
+</blockquote>
+</section>
+<section id="merge-data-with-data-flo" class="level2">
+<h2 class="anchored" data-anchor-id="merge-data-with-data-flo">2. Merge data with Data-flo</h2>
+<p><code>https://data-flo.io/</code></p>
+<p><em>Note: you need to sign-up for data-flo and Microreact. See instructions in the <a href="#resources">Resources</a> section. Creating your own account will allow you to manage and edit your projects.</em></p>
+<p>The reference lab has sent you the culture results on an Excel file called (<a href="https://drive.google.com/drive/folders/1KMbks4oWsFRlB2Qt48MkZnTMLJTUB13f?usp=share_link"><code>lab_results.xlsx</code></a>). The lab reported that <strong>2 out of 13</strong> water samples from Ñu Guasú park were positive for <em>S. sonnei</em>. <strong>This immediately prompted the closure of the 2 water sources.</strong></p>
+<blockquote class="blockquote">
+<p>Does this confirm that the source of the outbreak was contaminated water from Ñu Guasú park?</p>
+</blockquote>
+<p>One colony from each source was sequenced on Illumina MiSeq by the reference lab. A maximum likelihood phylogenetic tree (<a href="https://drive.google.com/drive/folders/1KMbks4oWsFRlB2Qt48MkZnTMLJTUB13f?usp=share_link"><code>tree.nwk</code></a>) was inferred from the genomes of the 34 clinical samples and 2 environmental (water) samples. Six genomes from a previous outbreak (Jan-Feb 2020) were also included in the tree inference and their associated data added to the (<a href="https://drive.google.com/drive/folders/1KMbks4oWsFRlB2Qt48MkZnTMLJTUB13f?usp=share_link"><code>epi_data.csv</code></a>) file.</p>
+<p>The disease detectives now have the information needed for the investigation in the following formats:</p>
+<ul>
+<li><code>epi_data.csv</code> Epi data from 34 clinical cases and 6 cases from previous outbreak</li>
+<li><code>Epicollect project</code> Metadata of 13 water sources from Ñu Guasú Park</li>
+<li><code>lab_results.xlsx</code> Culture and serotyping results</li>
+<li><code>tree.nwk</code> Phylogenetic tree of 34 clinical cases, 2 culture-positive water samples, and 6 cases from previous outbreak</li>
+</ul>
+<p>The files are located in <strong><a href="https://drive.google.com/drive/folders/1KMbks4oWsFRlB2Qt48MkZnTMLJTUB13f?usp=share_link">this google drive link</a></strong>.</p>
+<p>We will combine data from these different sources with a data-flo workflow that takes the files above and the data from the Epicollect project as input, and creates as an output a Microreact project where the data can be visualised.</p>
+<p>Open the data-flo workflow (<strong><a href="https://data-flo.io/run?prnvpvmKzq8rDKbPD9ZXAs">https://data-flo.io/run?prnvpvmKzq8rDKbPD9ZXAs</a></strong>)</p>
+<p><img src="dataflo_2023.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>Copy the workflow to your own dataflo account.</p>
+<p><img src="dataflo_copy.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>This will open a copy of this workflow in your dataflo account.</p>
+<p><img src="dataflo_workflow.PNG" width="50%" height="50%"></p>
+<p><br></p>
+<p><strong>On a different browser tab</strong>, get your microreact <code>API access token</code> at <strong><a href="https://microreact.org/my-account/settings">https://microreact.org/my-account/settings</a></strong> (you must already have created your microreact account).</p>
+<p><img src="miroreact_token.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>Edit the workflow to include your own microreact <code>API access token</code>.</p>
+<ol type="1">
+<li>Click on <code>*access token</code> in the <code>Create microreact project</code> box</li>
+<li>From the options on the right, select <code>Bind to value</code></li>
+<li>Paste your <code>API access token</code> in the <code>VALUE</code> box</li>
+</ol>
+<p><img src="dataflo_key.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>Save your newly edited dataflo project by clicking on the <code>save</code> icon.</p>
+<p><img src="dataflo_save.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>Now lets go to the implementation page by clicking on the <code>i</code> icon.</p>
+<p><img src="dataflo_implementation.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>To run the workflow paste the url of the Epicollect5 project (<strong><a href="https://five.epicollect.net/project/asuncion-2023-s-sonnei-outbreak">https://five.epicollect.net/project/asuncion-2023-s-sonnei-outbreak</a></strong>) and upload the files, found <a href="https://drive.google.com/drive/folders/1KMbks4oWsFRlB2Qt48MkZnTMLJTUB13f?usp=share_link"><code>here</code></a>.</p>
+<p><img src="dataflo_run2.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>Click on <strong><code>Run</code></strong>. The Outputs box now shows the url of a Microreact project created by data-flo.</p>
+<p><img src="dataflo_result.png" width="50%" height="50%"></p>
+<p>Before you open the Microreact project answer the following questions:</p>
+<blockquote class="blockquote">
+<ol type="1">
+<li>If later on we wanted to add additional entries (i.e.&nbsp;water samples) to the Epicollect project, could we use the same data-flo? If so, how would this be beneficial?</li>
+<li>Do you use/know of any other methods to join data? If so, how do they compare with data-flo?</li>
+</ol>
+</blockquote>
+</section>
+<section id="microreact" class="level2">
+<h2 class="anchored" data-anchor-id="microreact">3. Microreact</h2>
+<p><code>https://microreact.org/</code></p>
+<p>Open the Microreact link in the output from data-flo. It should look something like this:</p>
+<p><img src="microreact_link.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>Now change the colour column to “Hospital”. Click on the eye icon at the top left of the page. Select “Hospital from the <code>Colour Column</code> dropdown list.</p>
+<p><img src="microreact_colour.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>Scale the markers on the map by clicking on the sliders icoc, then in the opening options click on <code>Markers</code>. Finally, toggle the <code>Scale markers</code> option on.</p>
+<p><img src="microreact_markers.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>Answer the following questions:</p>
+<blockquote class="blockquote">
+<ol type="1">
+<li>What do the markers on the map represent?</li>
+<li>Which hospital reported the index (first) case? Tip: Click on the earliest sample on the timeline.</li>
+</ol>
+</blockquote>
+<p>Change the colour column to “Source”. Click on the eye icon at the top left of the page. Then select “Source” from the <code>Colour Column</code> dropdown list.</p>
+<p><img src="microreact_source.png" width="50%" height="50%"></p>
+<p><br></p>
+<blockquote class="blockquote">
+<ol start="3" type="1">
+<li>Can you confirm that the source of the outbreak is the contaminated water from Ñu Guasú Park?</li>
+<li>Why is it useful to include genomes from a previous outbreak in the analysis? Is the current outbreak related to the past outbreak from Jan-Feb 2020?</li>
+</ol>
+</blockquote>
+<p>Microreact assigns colours automatically to every column in your metadata table, but you can customise them. Let’s change the colour column to “Household”. Click on the eye icon at the top left of the page. Then select “Household” from the <code>Colour Column</code> dropdown list.</p>
+<p><img src="microreact_household.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>Now Select “Categorical” from the <code>Colour Palette</code> option. Next Select “qualitative” from the <code>Palette type</code> dropdown list and “10” from the <code>Number of colours</code> dropdown list. Finally, select the second option from the list of palettes.</p>
+<p><img src="microreact_palette.png" width="50%" height="50%"></p>
+<p><br></p>
+<p>Change the colour column back to “Hospital” and add the columns “Source” and “Household” as metadata blocks. For this, select the slider icon from top right of the map panel, then, click on the <code>Metadata blocks</code> button. Finally, select “Source” and “Household” from the list of options.</p>
+<p><img src="microreact_metadata_blocks.png" width="50%" height="50%"></p>
+<p><br></p>
+<blockquote class="blockquote">
+<ol start="5" type="1">
+<li>Do any of the cases share a household? Taking into account the incubation period for S. sonnei (a few hours to five days), does the data support intra-household transmission?</li>
+</ol>
+</blockquote>
+</section>
+</section>
+<section id="resources" class="level1">
+<h1>Resources</h1>
+<section id="install-and-test-epicollect5-on-your-mobile-phone" class="level2">
+<h2 class="anchored" data-anchor-id="install-and-test-epicollect5-on-your-mobile-phone">Install and test Epicollect5 on your mobile phone</h2>
+<p>Epicollect5 is available on Android and iOS. To install it on your mobile device, get it from Google Play or the Apple App Store. To test Epicollect5 on your phone, open the application and click on the pre-loaded EC5 Demo Project. Click on <code>+ Add entry</code> and follow the questionnaire. Please answer all the questions, including taking a photo with your phone’s camera. Once you’ve answered the questions, save and upload the entry. Please note that you must be connected to the internet (or to a mobile network) to be able to upload an entry.</p>
+</section>
+<section id="sign-in-to-data-flo" class="level2">
+<h2 class="anchored" data-anchor-id="sign-in-to-data-flo">Sign-in to data-flo</h2>
+<p><strong><a href="https://docs.data-flo.io/introduction/getting-started-sign-in">https://docs.data-flo.io/introduction/getting-started-sign-in</a></strong></p>
+</section>
+<section id="sign-in-to-microreact" class="level2">
+<h2 class="anchored" data-anchor-id="sign-in-to-microreact">Sign-in to Microreact</h2>
+<p>Head over to <strong><a href="https://microreact.org/my-account">https://microreact.org/my-account</a></strong>, and sign up using your email address or any other authenticating option</p>
+<p>!<img src="microreact_signup.png" width="30%" height="30%"></p>
+</section>
+<section id="web-colours" class="level2">
+<h2 class="anchored" data-anchor-id="web-colours">Web colours</h2>
+<p>Web colours are used on web pages, such as the microreact.org projects, and are usually specified in hexadecimal format preceded by ​​a number sign (or hashtag sign if you were born before the Jurassic period). For example, <code>#FFFFFF</code> is the hexadecimal code (or hex code) for the colour “white”, <code>#000000</code> is the hex code for the colour “black”, and <code>#FF00FF</code> is the hex code for the colour “magenta”. For more information on the format of the hexadecimal code see Wikipedia page <strong><a href="https://en.wikipedia.org/wiki/Web_colors">https://en.wikipedia.org/wiki/Web_colors</a></strong></p>
+<p>Useful websites to work with web colours:</p>
+<section id="colorbrewer" class="level3">
+<h3 class="anchored" data-anchor-id="colorbrewer">ColorBrewer</h3>
+<p><strong><a href="https://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3">https://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3</a></strong> Colour palettes for maps</p>
+</section>
+<section id="colorhexa" class="level3">
+<h3 class="anchored" data-anchor-id="colorhexa">ColorHexa</h3>
+<p><strong><a href="https://www.colorhexa.com/">https://www.colorhexa.com/</a></strong> Get complementary colours, colour gradients, etc.</p>
+</section>
+<section id="coolors" class="level3">
+<h3 class="anchored" data-anchor-id="coolors">Coolors</h3>
+<p><strong><a href="https://coolors.co/palettes/trending">https://coolors.co/palettes/trending</a></strong> Colour palette generator</p>
+</section>
+<section id="wes-anderson-colour-palettes" class="level3">
+<h3 class="anchored" data-anchor-id="wes-anderson-colour-palettes">Wes Anderson colour palettes</h3>
+<p><strong><a href="https://github.com/karthik/wesanderson">https://github.com/karthik/wesanderson</a></strong> Hipster colour palettes inspired by Wes Anderson movies</p>
+</section>
+</section>
+<section id="bonus-activities" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-activities">Bonus activities</h2>
+<section id="download-data-from-the-epicollect5-project-on-the-web." class="level3">
+<h3 class="anchored" data-anchor-id="download-data-from-the-epicollect5-project-on-the-web.">1. Download data from the Epicollect5 project on the web.</h3>
+<ol type="a">
+<li><p>Go to the <strong><a href="https://five.epicollect.net/project/asuncion-2023-s-sonnei-outbreak">epicollect link provided above</a></strong>.</p></li>
+<li><p>Select <code>VIEW DATA</code>.</p></li>
+</ol>
+<p><img src="epicollect_view_data.PNG" width="50%" height="50%"></p>
+<ol start="3" type="a">
+<li>Click on <code>Download</code> and select your format of choice.</li>
+</ol>
+<p><img src="epicollect_download.png" width="50%" height="50%"></p>
+</section>
+<section id="create-a-microreact-project-using-a-metadata-in-csv-format-and-a-phylogenetic-tree." class="level3">
+<h3 class="anchored" data-anchor-id="create-a-microreact-project-using-a-metadata-in-csv-format-and-a-phylogenetic-tree.">2. Create a microreact project using a metadata in csv format and a phylogenetic tree.</h3>
+<ol type="a">
+<li>Click on the menu icon at the top left of the screen</li>
+</ol>
+<p><img src="microreact_menu_icon.png" width="40%" height="40%"></p>
+<ol start="2" type="a">
+<li>Click on <code>Upload</code></li>
+</ol>
+<p><img src="microreact_upload_option.png" width="30%" height="30%"></p>
+<ol start="3" type="a">
+<li>Click on the <code>+</code> symbol at the bottom right of the screen.</li>
+</ol>
+<p><img src="microreact_plus_icon.png" width="10%" height="10%"></p>
+<ol start="4" type="a">
+<li>Select <code>Browse Files</code></li>
+</ol>
+<p><img src="microreact_browse_files.png" width="20%" height="20%"></p>
+<ol start="5" type="a">
+<li><p>Choose the files <code>tree.nwk</code> and <code>epi_data.csv</code>, and click on the <code>Open</code> button (These files were downloaded in the <a href="#merge-data-with-data-flo">dataflo</a> section).</p></li>
+<li><p>Click on <code>Continue</code> in the next prompts.</p></li>
+<li><p>Your view will look like this:</p></li>
+</ol>
+<p><img src="microreact_bonus_view.png" width="30%" height="30%"></p>
+<ol start="8" type="a">
+<li>You can add a Timeline by clicking on the <code>pencil</code> icon at the top left of the screen, and clicking on <code>Create New Timeline</code></li>
+</ol>
+<p><img src="microreact_pencil_icon.png" width="50%" height="50%"></p>
+<ol type="i">
+<li>Then position the new panel by dragging the pointer to the bottom panel.</li>
+</ol>
+<p><img src="microreact_bottom_panel.png" width="50%" height="50%"></p>
+<ol start="10" type="a">
+<li>Finally, select “One column: Formatted Values” from the <code>Temporal Data Type</code> dropdown list, and “Collection Date” from the <code>Temporal Data Column</code> dropdown list. Click on <code>CLOSE</code></li>
+</ol>
+<p><img src="microreact_temp_data_type.png" width="50%" height="50%"></p>
+</section>
+</section>
+<section id="create-a-microreact-project-from-a-google-spreadsheet" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-microreact-project-from-a-google-spreadsheet">3. Create a microreact project from a Google Spreadsheet</h2>
+<ol type="a">
+<li>Open this <strong><a href="https://docs.google.com/spreadsheets/d/1DN6fyhHmmkgEU0Ml7Ep_y_2l_JpQZkBfmXZzEwRs70Y/edit?usp=sharing">Google spreadsheet</a></strong></li>
+</ol>
+<p><img src="bonus_original_spreadsheet.png" width="50%" height="50%"></p>
+<ol start="2" type="a">
+<li>Make a copy of this in your own Google account by selecting <code>Make a copy</code> from the <code>File</code> menu item. When prompted, click on <code>Make a copy</code>. This will open a separate tab where the copy will be available.</li>
+</ol>
+<p><img src="bonus_make_copy.png" width="30%" height="30%"></p>
+<p><img src="bonus_copy.png" width="30%" height="30%"></p>
+<ol start="3" type="a">
+<li>Set access to shareable by clicking on the <code>Share</code> button at the top right of the screen. A dialogue screen will popoup, here, click on the <code>Restricted</code> button, select <code>Anyone with the link</code>, and click on <code>Done</code></li>
+</ol>
+<p><img src="bonus_share.png" width="30%" height="30%"></p>
+<ol start="4" type="a">
+<li>Now to publish the google spreadsheet click on the <code>File</code> menu item, select <code>Share</code>, and click on <code>Publish on web</code></li>
+</ol>
+<p><img src="bonus_publish.png" width="30%" height="30%"></p>
+<ol start="5" type="a">
+<li>In the popup message click on <code>Web page</code>, and select <code>Comma-separated values (.csv)</code>. Also, make sure the <code>Automatically republish when changes are made</code> option is turned on under the <code>Published content and settings</code> section</li>
+</ol>
+<p><img src="bonus_csv.png" width="30%" height="30%"></p>
+<p><img src="bonus_auto_publish.png" width="30%" height="30%"></p>
+<ol start="6" type="a">
+<li>Confirm your choices in the popup message clicking on <code>OK</code>. This will provide more details about your Google spreadsheet, copy the url.</li>
+</ol>
+<p><img src="bonus_publish_sure.png" width="30%" height="30%"></p>
+<p><img src="bonus_link.png" width="30%" height="30%"></p>
+<ol start="7" type="a">
+<li>Go to <strong><a href="https://microreact.org">microreact.org</a></strong>, and select <code>Upload</code> from the main menu.</li>
+</ol>
+<p><img src="bonus_upload.png" width="10%" height="10%"></p>
+<ol start="8" type="a">
+<li>Select the plus icon at the bottom right, and click on <code>Add URLs</code></li>
+</ol>
+<p><img src="bonus_add_url.png" width="30%" height="30%"></p>
+<ol type="i">
+<li>Paste the url from step <em>f</em> and select <code>Data (CSV or TSV)</code> under <code>File kind</code>. Finally click on <code>CONTINUE</code> to see your microreact.</li>
+</ol>
+<p><img src="bonus_add_files.png" width="30%" height="30%"></p>
+<ol start="10" type="a">
+<li>You should get a screen like this!</li>
+</ol>
+<p><img src="bonus_final_mr.png" width="30%" height="30%"></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">This work is licensed under a Creative Commons Attribution 4.0 International License. Reuse is encouraged with acknowledgement</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/TheCGPS">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

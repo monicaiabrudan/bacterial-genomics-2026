@@ -1,0 +1,466 @@
+[
+  {
+    "id": "ai9jZdWD5KBoVDzuAaYCub",
+    "manifest": {
+      "input": [
+        {
+          "id": "798x29oh",
+          "name": "lab results excel",
+          "required": true,
+          "type": "file",
+          "ui": {
+            "x": 40,
+            "y": -30
+          }
+        },
+        {
+          "id": "ovqoxacg",
+          "name": "epi_data csv",
+          "required": true,
+          "type": "file",
+          "ui": {
+            "x": 910,
+            "y": 790
+          }
+        },
+        {
+          "id": "nuhbvd5a",
+          "name": "PW MLST csv",
+          "required": true,
+          "type": "file",
+          "ui": {
+            "x": 670,
+            "y": 490
+          }
+        },
+        {
+          "id": "xqbcyys9",
+          "name": "tree",
+          "required": true,
+          "type": "file",
+          "ui": {
+            "x": 2050,
+            "y": 1040
+          }
+        },
+        {
+          "id": "fk1inj41",
+          "name": "new isolates",
+          "required": true,
+          "type": "file",
+          "ui": {
+            "x": 620,
+            "y": 270
+          }
+        }
+      ],
+      "output": [
+        {
+          "argument": "url",
+          "id": "p3uidumf",
+          "name": "microreact URL",
+          "transformation": "transform-17",
+          "type": "text",
+          "ui": {
+            "x": 2710,
+            "y": 1180
+          }
+        }
+      ],
+      "transform": [
+        {
+          "name": "transform-1",
+          "type": "adaptor",
+          "adaptor": "import-from-spreadsheet-file",
+          "description": null,
+          "binding": [
+            {
+              "target": "file",
+              "type": "input",
+              "input": "lab results excel"
+            }
+          ],
+          "id": "ocat2lhq",
+          "ui": {
+            "x": 252,
+            "y": 34
+          },
+          "label": "#1"
+        },
+        {
+          "name": "transform-2",
+          "type": "adaptor",
+          "adaptor": "rename-columns",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transform-1",
+              "argument": "data"
+            },
+            {
+              "target": "column names",
+              "type": "value",
+              "value": [
+                {
+                  "key": "sample id",
+                  "value": "id"
+                }
+              ]
+            }
+          ],
+          "id": "jdwk83d1",
+          "ui": {
+            "x": 496,
+            "y": 34
+          },
+          "label": "#2"
+        },
+        {
+          "name": "transform-3",
+          "type": "adaptor",
+          "adaptor": "select-columns",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transform-2",
+              "argument": "data"
+            },
+            {
+              "target": "column names",
+              "type": "value",
+              "value": [
+                "id",
+                "culture"
+              ]
+            }
+          ],
+          "id": "d3zsr5np",
+          "ui": {
+            "x": 740,
+            "y": 34
+          },
+          "label": "#3"
+        },
+        {
+          "name": "transform-4",
+          "type": "adaptor",
+          "adaptor": "filter-rows",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transform-3",
+              "argument": "data"
+            },
+            {
+              "target": "column name",
+              "type": "value",
+              "value": "culture"
+            },
+            {
+              "target": "filter type",
+              "type": "value",
+              "value": "equals"
+            },
+            {
+              "target": "filter value",
+              "type": "value",
+              "value": "K. pneumoniae"
+            }
+          ],
+          "id": "9e9evvqt",
+          "ui": {
+            "x": 984,
+            "y": 34
+          },
+          "label": "#4"
+        },
+        {
+          "name": "transform-9",
+          "type": "adaptor",
+          "adaptor": "join-datatables",
+          "description": null,
+          "binding": [
+            {
+              "target": "main data",
+              "type": "transformation",
+              "transformation": "transform-4",
+              "argument": "data"
+            },
+            {
+              "target": "main column",
+              "type": "value",
+              "value": "id"
+            },
+            {
+              "target": "other data",
+              "type": "transformation",
+              "transformation": "transform-5",
+              "argument": "data"
+            }
+          ],
+          "id": "nezt0419",
+          "ui": {
+            "x": 1228,
+            "y": 153
+          },
+          "label": "#5"
+        },
+        {
+          "name": "transform-10",
+          "type": "adaptor",
+          "adaptor": "import-from-csv-file",
+          "description": null,
+          "binding": [
+            {
+              "target": "file",
+              "type": "input",
+              "input": "epi_data csv"
+            }
+          ],
+          "id": "39245x52",
+          "ui": {
+            "x": 1070,
+            "y": 760
+          },
+          "label": "#6"
+        },
+        {
+          "name": "transform-11",
+          "type": "adaptor",
+          "adaptor": "geocoding",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transform-10",
+              "argument": "data"
+            },
+            {
+              "target": "location column",
+              "type": "value",
+              "value": "Hospital"
+            },
+            {
+              "target": "latitude column",
+              "type": "value",
+              "value": "Latitude"
+            },
+            {
+              "target": "longitude column",
+              "type": "value",
+              "value": "Longitude"
+            }
+          ],
+          "id": "pv79vyji",
+          "ui": {
+            "x": 1340,
+            "y": 730
+          },
+          "label": "#7"
+        },
+        {
+          "name": "transform-13",
+          "type": "adaptor",
+          "adaptor": "import-from-csv-file",
+          "description": null,
+          "binding": [
+            {
+              "target": "file",
+              "type": "input",
+              "input": "PW MLST csv"
+            }
+          ],
+          "id": "rm6w0zbo",
+          "ui": {
+            "x": 810,
+            "y": 500
+          },
+          "label": "#8"
+        },
+        {
+          "name": "transform-14",
+          "type": "adaptor",
+          "adaptor": "select-columns",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transform-13",
+              "argument": "data"
+            },
+            {
+              "target": "column names",
+              "type": "value",
+              "value": [
+                "Genome Name",
+                "ST"
+              ]
+            }
+          ],
+          "id": "bzfdjsh7",
+          "ui": {
+            "x": 1040,
+            "y": 490
+          },
+          "label": "#9"
+        },
+        {
+          "name": "transform-12",
+          "type": "adaptor",
+          "adaptor": "join-datatables",
+          "description": null,
+          "binding": [
+            {
+              "target": "main data",
+              "type": "transformation",
+              "transformation": "transform-9",
+              "argument": "data"
+            },
+            {
+              "target": "other data",
+              "type": "transformation",
+              "transformation": "transform-14",
+              "argument": "data"
+            },
+            {
+              "target": "main column",
+              "type": "value",
+              "value": "id"
+            },
+            {
+              "target": "other column",
+              "type": "value",
+              "value": "Genome Name"
+            }
+          ],
+          "id": "vvhrz9vu",
+          "ui": {
+            "x": 1490,
+            "y": 340
+          },
+          "label": "#10"
+        },
+        {
+          "name": "transform-15",
+          "type": "adaptor",
+          "adaptor": "append-datatables",
+          "description": null,
+          "binding": [
+            {
+              "target": "first data",
+              "type": "transformation",
+              "transformation": "transform-12",
+              "argument": "data"
+            },
+            {
+              "target": "second data",
+              "type": "transformation",
+              "transformation": "transform-11",
+              "argument": "data"
+            }
+          ],
+          "id": "lfx1g1qr",
+          "ui": {
+            "x": 1820,
+            "y": 610
+          },
+          "label": "#11"
+        },
+        {
+          "name": "transform-16",
+          "type": "adaptor",
+          "adaptor": "export-to-csv-file",
+          "description": null,
+          "binding": [
+            {
+              "target": "data",
+              "type": "transformation",
+              "transformation": "transform-15",
+              "argument": "data"
+            }
+          ],
+          "id": "d3w9lh1n",
+          "ui": {
+            "x": 2030,
+            "y": 590
+          },
+          "label": "#12"
+        },
+        {
+          "name": "transform-17",
+          "type": "adaptor",
+          "adaptor": "export-to-microreact-project",
+          "description": null,
+          "binding": [
+            {
+              "target": "name",
+              "type": "value",
+              "value": "Cluj-Napoca 2025 K. pneumoniae"
+            },
+            {
+              "target": "description",
+              "type": "value",
+              "value": "This dashboard was designed for the Bioinformatics Methods for Bacterial Genomics course, Cluj-Napoca, 202"
+            },
+            {
+              "target": "data file",
+              "type": "transformation",
+              "transformation": "transform-16",
+              "argument": "file"
+            },
+            {
+              "target": "timeline column",
+              "type": "value",
+              "value": "Collection Date"
+            },
+            {
+              "target": "access token",
+              "type": "value",
+              "value": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..sFRz2zITqRQ63IOn.MlKzOqIrLVn6M874N-bq_O5LqRvw5b8AjDa2uZapZ_EpBYHqTQLjGcCbMn2bcQT4VbKRrL1L6SUQ142m3ceXbpcIwtNyTig5LeJWxVmPCZ7f8y2bSUpzzYRKl3lxG4d7T94NADR0NbSPcACz_vVN6w.Zw5W-edXcG50wKFgh-mwPQ"
+            },
+            {
+              "target": "tree file",
+              "type": "input",
+              "input": "tree"
+            }
+          ],
+          "id": "ss84zz02",
+          "ui": {
+            "x": 2420,
+            "y": 750
+          },
+          "label": "#13"
+        },
+        {
+          "name": "transform-5",
+          "type": "adaptor",
+          "adaptor": "import-from-csv-file",
+          "description": null,
+          "binding": [
+            {
+              "target": "file",
+              "type": "input",
+              "input": "new isolates"
+            }
+          ],
+          "id": "2wc783dx",
+          "ui": {
+            "x": 890,
+            "y": 230
+          },
+          "label": "#14"
+        }
+      ],
+      "version": 4
+    },
+    "name": "Cluj-Napoca 2025 K. pneumoniae"
+  }
+]

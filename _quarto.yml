@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: "Bioinformatic methods for bacterial genomics, Cluj-Napoca, October 2026"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: agenda.qmd
+        text: Agenda
+      - href: Join.qmd
+      - text: Training materials
+        menu:
+          - Day1/QC.qmd
+          - Day1/Assembly.qmd
+          - Day2/Annotation.qmd
+          - Day2/AMR-detection.qmd
+          - Day3/Phylogenetics.qmd
+          - Day3/Genomic_epidemiology.qmd
+          - Day3/GenEpi_Surveillance.qmd
+          - resources.qmd
+
+  page-footer: 
+    left: "This work is licensed under a Creative Commons Attribution 4.0 International License. Reuse is encouraged with acknowledgement" 
+
+  sidebar:
+    style: "docked"
+    search: true
+    collapse-level: 1
+    #contents: 
+      #- section: "Data-flo step-by-step tutorial"
+      #  contents:
+      #    - data-flo/data-flo.qmd
+      #- section: "Microreact step-by-step tutorial"
+      #  contents:
+      #    - microreact/microreact.qmd
+format:
+  html:
+    theme:
+      light: [materia, theme-light.scss]
+      dark: [materia, theme-dark.scss]
+    anchor-sections: true
+
+editor: visual
+
+execute:
+  freeze: auto
+  
+sidebar:
+  contents: auto
+
+link-external-newwindow: true

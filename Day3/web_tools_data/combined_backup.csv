@@ -1,0 +1,43 @@
+﻿"id","culture","id","Source","Collection Date","Latitude","Longitude","Genome Name","ST","City","Hospital","Infection Type","Sex","Age","Workplace","Workplace detail"
+"123456789-9","K. pneumoniae","123456789-9","Faucet","07/07/2025","9.935086","-84.043458","123456789-9","258",,,,,,,
+"123456789-11","K. pneumoniae","123456789-11",,,,,"123456789-11","258",,,,,,,
+"CNRVC170178",,"CNRVC170178","Clinical","01/03/2023","9.897757","-84.061127",,"258","San Jose","Clinica Hospital Santa Catalina, San Jose, Costa Rica",,"M","79",,
+"CNRVC170206",,"CNRVC170206","Clinical","09/03/2023","9.933634","-84.086079",,"258","San Jose","Hospital San Juan de Dios, San Jose, Costa Rica",,"F","71",,
+"CNRVC170207",,"CNRVC170207","Clinical","16/03/2023","9.936699","-84.069536",,"258","San Jose","Hospital Rafael Angel Calderon Guardia, San Jose, Costa Rica",,"F","70","Liga Deportiva Alajuelense","Club Manager"
+"CNRVC170180",,"CNRVC170180","Clinical","02/04/2023","9.897757","-84.061127",,"258","San Jose","Clinica Hospital Santa Catalina, San Jose, Costa Rica",,"M","85",,
+"CNRVC170179",,"CNRVC170179","Clinical","10/04/2023","9.897757","-84.061127",,"258","San Jose","Clinica Hospital Santa Catalina, San Jose, Costa Rica",,"M","76",,
+"CNRVC170177",,"CNRVC170177","Clinical","21/04/2023","9.897757","-84.061127",,"258","San Jose","Clinica Hospital Santa Catalina, San Jose, Costa Rica",,"F","70",,
+"CNRVC170176",,"CNRVC170176","Clinical","30/01/2025","9.933634","-84.086079",,"258","San Jose","Hospital San Juan de Dios, San Jose, Costa Rica","UTI","F","53","Restaurante El Sabor de Matt","Chef"
+"CNRVC170241",,"CNRVC170241","Clinical","01/01/2025","9.933634","-84.086079",,"258","San Jose","Hospital San Juan de Dios, San Jose, Costa Rica",,"F","84",,
+"CNRVC170240",,"CNRVC170240","Clinical","04/01/2025","9.933634","-84.086079",,"258","San Jose","Hospital San Juan de Dios, San Jose, Costa Rica","UTI","M","82",,
+"CNRVC170242",,"CNRVC170242","Clinical","04/01/2025","9.933634","-84.086079",,"258","San Jose","Hospital San Juan de Dios, San Jose, Costa Rica","UTI","M","64","UEPV","Facultad de Gastronomia"
+"CNRVC170173",,"CNRVC170173","Clinical","07/01/2025","9.952416","-84.115379",,"258","San Jose","Hospital Mexico, San Jose, Costa Rica","UTI","F","79","Retired",
+"CNRVC170182",,"CNRVC170182","Clinical","10/01/2025","9.952416","-84.115379",,"258","San Jose","Hospital Mexico, San Jose, Costa Rica","UTI","F","71","Universidad Tica","Oficina del Rector"
+"CNRVC170186",,"CNRVC170186","Clinical","10/01/2025","9.897757","-84.061127",,"258","San Jose","Clinica Hospital Santa Catalina, San Jose, Costa Rica","UTI","F","71","Banco del Chifrijo",
+"CNRVC170208",,"CNRVC170208","Clinical","12/01/2025","9.931273","-84.085437",,"258","San Jose","Hospital Metropolitano, San Jose, Costa Rica","UTI","M","64","UEPV","Educacion Continua"
+"CNRVC170203",,"CNRVC170203","Clinical","13/01/2025","9.927480","-84.079144",,"258","San Jose","Hospital Clinica Biblica, San Jose, Costa Rica","UTI","M","74","Retired",
+"CNRVC170195",,"CNRVC170195","Clinical","15/01/2025","9.949254","-84.058875",,"258","San Jose","Hospital Hotel La Catolica, San Jose, Costa Rica","UTI","M","69","UEPV","Facultad de Gastronomia"
+"CNRVC170183",,"CNRVC170183","Clinical","16/01/2025","9.949254","-84.058875",,"258","San Jose","Hospital Hotel La Catolica, San Jose, Costa Rica","UTI","M","70","UEPV","Educacion Continua"
+"CNRVC170191",,"CNRVC170191","Clinical","16/01/2025","9.927480","-84.079144",,"258","San Jose","Hospital Clinica Biblica, San Jose, Costa Rica","UTI","M","75","Universidad Tica","Facultad de Biologia"
+"CNRVC170199",,"CNRVC170199","Clinical","20/01/2025","9.949254","-84.058875",,"258","San Jose","Hospital Hotel La Catolica, San Jose, Costa Rica","UTI","M","71","Universidad Tica","Facultad de Bioquimica"
+"CNRVC170170",,"CNRVC170170","Clinical","24/01/2025","9.931273","-84.085437",,"258","San Jose","Hospital Metropolitano, San Jose, Costa Rica","UTI","M","88",,
+"CNRVC170202",,"CNRVC170202","Clinical","26/01/2025","9.931273","-84.085437",,"258","San Jose","Hospital Metropolitano, San Jose, Costa Rica","UTI","F","63","UEPV","Educacion Continua"
+"CNRVC170188",,"CNRVC170188","Clinical","27/01/2025","9.897757","-84.061127",,"258","San Jose","Clinica Hospital Santa Catalina, San Jose, Costa Rica","meningitis","M","78",,
+"CNRVC170198",,"CNRVC170198","Clinical","27/01/2025","9.931273","-84.085437",,"258","San Jose","Hospital Metropolitano, San Jose, Costa Rica","UTI","F","53","Supermercados Mae",
+"CNRVC170189",,"CNRVC170189","Clinical","30/01/2025","9.897757","-84.061127",,"258","San Jose","Clinica Hospital Santa Catalina, San Jose, Costa Rica","UTI","F","77",,
+"CNRVC170185",,"CNRVC170185","Clinical","31/01/2025","9.939643","-84.144329",,"258","San Jose","Hospital Cima, San Jose, Costa Rica","UTI","M","73","Centro Comercial El Yiquirre","Oficina Administrativa"
+"CNRVC170190",,"CNRVC170190","Clinical","31/01/2025","9.939643","-84.144329",,"258","San Jose","Hospital Cima, San Jose, Costa Rica","UTI","F","75","La Taverna de Tomas","Owner"
+"CNRVC170192",,"CNRVC170192","Clinical","31/01/2025","9.939643","-84.144329",,"258","San Jose","Hospital Cima, San Jose, Costa Rica","UTI","F","79","Retired",
+"CNRVC170184",,"CNRVC170184","Clinical","02/02/2025","9.931273","-84.085437",,"258","San Jose","Hospital Metropolitano, San Jose, Costa Rica","UTI","F","95",,
+"CNRVC170200",,"CNRVC170200","Clinical","03/02/2025","9.927480","-84.079144",,"258","San Jose","Hospital Clinica Biblica, San Jose, Costa Rica","sepsis","F","81",,
+"CNRVC170197",,"CNRVC170197","Clinical","06/02/2025","9.933634","-84.086079",,"258","San Jose","Hospital San Juan de Dios, San Jose, Costa Rica","sepsis","F","97",,
+"CNRVC170205",,"CNRVC170205","Clinical","06/02/2025","9.931273","-84.085437",,"258","San Jose","Hospital Metropolitano, San Jose, Costa Rica","UTI","F","69","Universidad Tica","Facultad de Matt-tematicas"
+"CNRVC170168",,"CNRVC170168","Clinical","08/02/2025","9.933634","-84.086079",,"258","San Jose","Hospital San Juan de Dios, San Jose, Costa Rica","UTI","M","75","Retired",
+"CNRVC170194",,"CNRVC170194","Clinical","08/02/2025","9.952416","-84.115379",,"258","San Jose","Hospital Mexico, San Jose, Costa Rica","UTI","F","69","Universidad Tica","Facultad de Matt-tematicas"
+"CNRVC170175",,"CNRVC170175","Clinical","11/02/2025","9.936699","-84.069536",,"258","San Jose","Hospital Rafael Angel Calderon Guardia, San Jose, Costa Rica","UTI","M","71","Universidad Tica","Facultad de Matt-tematicas"
+"CNRVC170201",,"CNRVC170201","Clinical","11/02/2025","9.933634","-84.086079",,"258","San Jose","Hospital San Juan de Dios, San Jose, Costa Rica","UTI","M","79","Retired",
+"CNRVC170187",,"CNRVC170187","Clinical","12/02/2025","9.949254","-84.058875",,"258","San Jose","Hospital Hotel La Catolica, San Jose, Costa Rica","UTI","M","58","UEPV","Casa de Matt"
+"CNRVC170174",,"CNRVC170174","Clinical","13/02/2025","9.931273","-84.085437",,"258","San Jose","Hospital Metropolitano, San Jose, Costa Rica","sepsis","M","76",,
+"CNRVC170196",,"CNRVC170196","Clinical","14/02/2025","9.927480","-84.079144",,"258","San Jose","Hospital Clinica Biblica, San Jose, Costa Rica","UTI","M","75","Retired",
+"CNRVC170193",,"CNRVC170193","Clinical","15/02/2025","9.933634","-84.086079",,"258","San Jose","Hospital San Juan de Dios, San Jose, Costa Rica","UTI","M","79",,
+"CNRVC170204",,"CNRVC170204","Clinical","18/02/2025","9.952416","-84.115379",,"258","San Jose","Hospital Mexico, San Jose, Costa Rica","UTI","M","70",,

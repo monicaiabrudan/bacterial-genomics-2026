@@ -1,0 +1,6 @@
+---
+title: "data-locations"
+format: html
+---
+
+Data Locations /home/ubuntu/ ├── Data/ │ ├── samples/ \# Raw FASTQ files │ └── Reference/ \# Reference genomes ├── analysis/ │ ├── qc/ \# FastQC outputs │ ├── assembly/ \# Assembly results │ ├── annotation/ \# Prokka outputs │ ├── amr/ \# ARIBA results │ ├── pangenome/ \# Roary outputs │ └── snippy/ \# SNP analysis └── Software/ \# Pre-installed tools

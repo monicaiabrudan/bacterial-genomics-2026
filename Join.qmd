@@ -1,0 +1,22 @@
+---
+title: "Join"
+format: html
+---
+
+Romanian Society of Bioinformatics (RSBI)
+
+<https://rsbi.ro/>
+
+![](images/Logo1.png)
+
+Affiliated to
+
+<https://www.iscb.org/>
+
+![](images/iscb.png)
+
+Check out:
+
+<https://elixir-europe.org/about-us/who-we-are>
+
+![](images/elixir.svg)
