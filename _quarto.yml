@@ -13,6 +13,7 @@ website:
       - href: Join.qmd
       - text: Training materials
         menu:
+          - Pre-course/recap.qmd
           - Day1/QC.qmd
           - Day1/Assembly.qmd
           - Day2/Annotation.qmd

@@ -1,5 +1,5 @@
 ---
-title: "QC"
+title: "Quality Control"
 format: html
 ---
 
@@ -11,30 +11,30 @@ By the end of this module, you will be able to
 
 2\. Critically evaluate and interpret QC outputs to determine data reliability.
 
-# Introduction
+# Quality Control
 
-## Brief recap
+#### Data retrieval from the European Nucleotide Archive (ENA)
 
-Below you can find a list of frequently used commands for you to remember them:
+The European Nucleotide Archive (ENA) provides a comprehensive record of the world’s nucleotide sequencing information, covering raw sequencing Data, sequence assembly information and functional annotation.
 
-| Command | What it does                                             |
-|---------|----------------------------------------------------------|
-| ls      | Lists the contents of the current directory              |
-| mkdir   | Makes a new directory                                    |
-| mv      | Moves or renames a file                                  |
-| cp      | Copies a file                                            |
-| rm      | Removes a file                                           |
-| mkdir   | Makes a new directory                                    |
-| cat     | Concatenates files                                       |
-| more    | Displays the contents of a file one page at a time       |
-| head    | Displays the first ten lines of a file                   |
-| tail    | Displays the last ten lines of a file                    |
-| cd      | Changes current working directory                        |
-| pwd     | Prints working directory                                 |
-| find    | Finds files matching an expression                       |
-| grep    | Searches a file for patterns                             |
-| wc      | Counts the lines, words, characters, and bytes in a file |
-| kill    | Stops a process                                          |
+Access to ENA Data is provided through the browser, through search tools, through large scale file download and through the API.
+
+### Inspect your data
+
+1.  Connect to your Amazon EC2 Ubuntu instance via ssh or via the web interface.
+2.  Check the directory called Data in /home/ubuntu/
+
+`cd /home/ubuntu/Data`
+
+3.  Check subdirectories for each of your samples
+
+    `cd /home/ubuntu/Data/G18255819/illumina`
+
+    `cd /home/ubuntu/Data/G18255819/nanopore`
+
+    `cd /home/ubuntu/Data/G18252308/illumina`
+
+    `cd /home/ubuntu/Data/G18252308/nanopore`
 
 ## Commonly used file formats for NGS data
 
@@ -160,6 +160,20 @@ You can read more about the FastQ file format and quality scores here:
 
 Cock, P. J., Fields, C. J., Goto, N., Heuer, M. L., & Rice, P. M. (2010). The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. *Nucleic Acids Research*, **38**, 1767–1771. <https://doi.org/10.1093/nar/gkp1137>.
 
+**Quantitative Coverage Calculations**
+
+The theoretical coverage depth formula:
+
+![](images/depth.png){width="446"}
+
+**Bacterial coverage benchmarks**:
+
+-   **10× depth:** Minimum for basic variant calling.
+
+-   **30× mapped coverage:** Recommended benchmark for reliable *de novo* genome assembly.
+
+-   **\>100× depth:** Excessive coverage that increases computational load; pipeline recommendation is to downsample.
+
 ### SAM and BAM
 
 A **SAM file** (usually named \*.sam) is used to represent aligned sequences. It is particularly useful for storing the results of genomic or transcriptomic sequence reads aligned against a reference genome sequence. The **BAM file** format is a compressed form of SAM. This has the disadvantage that it is not readable by a human but has the advantage of being smaller than the corresponding SAM file and thus easier to share and copy between locations.
@@ -168,73 +182,62 @@ You can read about SAM and BAM formats here:
 
 \- Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R., & 1000 Genome Project Data Processing Subgroup (2009). The Sequence Alignment/Map format and SAMtools. *Bioinformatics*, **25**, 2078–2079. <https://doi.org/10.1093/bioinformatics/btp352> - <https://samtools.github.io/hts-specs/SAMv1.pdf>.
 
-We can view BAM files graphically using specialised genome browsers software such as (we will be working with one of them in the Genome Visualisation Tools module):
-
-\- [IGV](https://igv.org/)
-
-\- [Artemis](http://sanger-pathogens.github.io/Artemis/Artemis/)
-
 An example **SAM file** is shown in the image below, along with the 11 mandatory fields of this standard:
 
-![SAMformat](https://user-images.githubusercontent.com/65819144/230166077-264a6161-ec8c-47d7-87b7-8e073080a548.jpg)
+![SAM format](https://user-images.githubusercontent.com/65819144/230166077-264a6161-ec8c-47d7-87b7-8e073080a548.jpg){alt="SAMformat"}
 
 (*Image from [Data Wrangling and Processing for Genomics](https://datacarpentry.org/wrangling-genomics)*)
 
 The meaning of each of these mandatory fields are detailed below:
 
-![SAMformat_fields](https://user-images.githubusercontent.com/65819144/230166180-fb086380-413a-4eef-8781-d0ba2b7e215b.jpg)
+![SAMformat_fields](https://user-images.githubusercontent.com/65819144/230166180-fb086380-413a-4eef-8781-d0ba2b7e215b.jpg){alt="SAMformat_fields"}
 
-# Quality Control
+In a SAM file, the **Flag** column (usually the second column in an alignment line) is an integer value that encodes various information about a read's alignment using a bitwise representation. Each bit in the flag represents a specific property of the alignment, and the **hexadecimal (Hex)**, **decimal (Dec)**, and **binary** representations can be used to interpret these flags.
 
-#### Data retrieval from the European Nucleotide Archive (ENA)
+Here’s a detailed explanation:
 
-The European Nucleotide Archive (ENA) provides a comprehensive record of the world’s nucleotide sequencing information, covering raw sequencing Data, sequence assembly information and functional annotation.
+### **Structure of the Flag**
 
-Access to ENA Data is provided through the browser, through search tools, through large scale file download and through the API.
+The flag is an **integer value** whose binary representation consists of 12 bits, each indicating a specific property of the read. Here's the breakdown:
 
-### Download the Data programatically
+| **Bit** | **Hex** | **Dec** | **Description**                               |
+|---------|---------|---------|-----------------------------------------------|
+| 0       | 0x1     | 1       | The read is paired in sequencing.             |
+| 1       | 0x2     | 2       | The read is mapped in a proper pair.          |
+| 2       | 0x4     | 4       | The read is unmapped.                         |
+| 3       | 0x8     | 8       | The mate is unmapped.                         |
+| 4       | 0x10    | 16      | The read is on the reverse strand.            |
+| 5       | 0x20    | 32      | The mate is on the reverse strand.            |
+| 6       | 0x40    | 64      | The read is the first in a pair.              |
+| 7       | 0x80    | 128     | The read is the second in a pair.             |
+| 8       | 0x100   | 256     | The alignment is not primary.                 |
+| 9       | 0x200   | 512     | The read fails quality control checks.        |
+| 10      | 0x400   | 1024    | The read is a PCR or optical duplicate.       |
+| 11      | 0x800   | 2048    | The read is supplementary (e.g., split-read). |
 
-1.  Connect to your Amazon EC2 Ubuntu instance via ssh or via the web interface.
+The flag is the sum of all applicable properties. For example:
 
-### How to retrieve Data for the samples G18255819 and G18252308 from ENA
+**For a flag with value 83 (a written in decimal), the binary is** 000000**1**0**1**00**11.**
 
-3.  Create a directory called Data in /home/ubuntu/
+To decode the bits with value **1**, start from right to left:
 
-`mkdir /home/ubuntu/Data`
+-   **1 (0x1)**: On position **0** from right to left, the bit value is **1**. This means that the read is paired.
 
-3.  Create subdirectories for each of your samples
+-   **2 (0x2)**: On position **1** from right to left, the bit value is **1**. This means that the read is mapped in a proper pair.
 
-    `mkdir /home/ubuntu/Data/G18255819/illumina`
+-   **16 (0x10)**: On position **4** from right to left, the bit value is **1**. This means that the read is on the reverse strand.
 
-    `mkdir /home/ubuntu/Data/G18255819/nanopore`
+-   **64 (0x40)**: On position **6** from right to left, the bit value is **1**. This means that the read is the first read in a pair.
 
-    `mkdir /home/ubuntu/Data/G18252308/illumina`
+Overall interpretation of a flag with value 83: this is the first read in a properly paired alignment, and it is mapped to the reverse strand.
 
-    `mkdir /home/ubuntu/Data/G18252308/nanopore`
+### **How to interpret a SAM file flag**
 
-4.  Download the reads for each sample
+1.  Take the decimal value in the second column.
 
-`cd /home/ubuntu/Data/G18255819/nanopore`
+2.  Convert it to binary (or refer to the above table).
 
-`wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR818/004/ERR8187234/ERR8187234.fastq.gz`
-
-`cd /home/ubuntu/Data/G18255819/illumina`
-
-`wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR478/004/ERR4784794/ERR4784794_1.fastq.gz`
-
-`wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR478/004/ERR4784794/ERR4784794_2.fastq.gz`
-
-`cd /home/ubuntu/Data/G18252308/nanopore`
-
-`wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR818/005/ERR8187245/ERR8187245.fastq.gz`
-
-`cd /home/ubuntu/Data/G18252308/illumina`
-
-`wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR463/006/ERR4635696/ERR4635696_1.fastq.gz`
-
-`wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR463/006/ERR4635696/ERR4635696_2.fastq.gz`
-
-### 
+3.  Decode each bit to determine the alignment properties.
 
 # Initial data exploration
 
@@ -308,15 +311,19 @@ Open in browser:
 
 Navigate to `/home/ubuntu/Data/QC` and double-click `multiqc_report.html`
 
-**Key metrics to check:**
+**Quality Control Metrics to Evaluate:**
 
-Per base sequence quality (should be \>28 for most bases)
+-   Per base sequence quality (should be \>28 for most bases)
 
-Per sequence quality scores (peak should be \>30)
+-   Per sequence quality scores (peak should be \>30)
 
-Adapter content (should be minimal)
+-   Adapter content (should be minimal)
 
-GC content (should match expected \~33% for *S. aureus*)
+-   GC content (should match expected \~33% for *S. aureus*)
+
+-   **Per-Cycle GC Content:** Fluctuations in GC percentage during early sequencing cycles indicate residual adapter/primer contamination.
+
+-   **PCR Duplicates:** Marked by identical alignment start coordinates; should remain **\<5%** in bacterial WGS datasets. Tools like `samtools markdup` or `picard MarkDuplicates` detect duplicate reads
 
 ### Read Trimming/Filtering
 
@@ -325,6 +332,8 @@ GC content (should match expected \~33% for *S. aureus*)
 Eg:
 
 `fastp -i ERR4635696_1.fastq.gz -I ERR4635696_2.fastq.gz -o ERR4635696_1.clean.fastq.gz -O ERR4635696_2.clean.fastq.gz --qualified_quality_phred 20 --length_required 50 --detect_adapter_for_pe --html sample1_fastp.html --json sample1_fastp.json --thread 4`
+
+**Assembly Decision Threshold:** If **\>80%** of reads pass filtering and the mean base quality is **\>Q30**, proceed to assembly.
 
 ### Re-run MultiQC to confirm improvement
 
@@ -347,6 +356,12 @@ Decision point: If \>80% reads pass filtering and mean quality \>Q30, proceed to
 `mash info sample1.msh`
 
 Compare against other reference genomes.
+
+| Metric            | Threshold | Interpretation                 |
+|-------------------|-----------|--------------------------------|
+| **Mash Distance** | ≤ 0.05    | Same species isolate           |
+| **Mash Distance** | \> 0.05   | Different species / divergence |
+| **p-value**       | ≤ 1e-5    | High statistical confidence    |
 
 Eg:
 
@@ -382,6 +397,14 @@ Try the following:
 `mash dist mssa.msh ../G18252308/illumina/sample.msh`
 
 ***Which is the closest reference genome to your samples?***
+
+# Automated Taxonomic Verification
+
+-   **Bactinspector:** Runs Mash distance computations against curated species databases.
+
+-   **Confindr:** Identifies intraspecies contamination by detecting unexpected heterozygous SNPs in pure haploid bacterial isolates.
+
+-   **Kraken:** Performs k-mer-based taxonomic classification across reads
 
 # Species Identification with Bactinspector
 

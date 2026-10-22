@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assessment – Bioinformatic methods for bacterial genomics, Cluj-Napoca, October 2026</title>
+<title>Assignment: QC evaluation of a new sequencing platform – Bioinformatic methods for bacterial genomics, Cluj-Napoca, October 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -72,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed fullcontent">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -107,8 +141,12 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-training-materials">    
         <li>
+    <a class="dropdown-item" href="../Pre-course/recap.html">
+ <span class="dropdown-text">Introduction to Linux</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../Day1/QC.html">
- <span class="dropdown-text">QC</span></a>
+ <span class="dropdown-text">Quality Control</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../Day1/Assembly.html">
@@ -152,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assessment</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignment: QC evaluation of a new sequencing platform</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -173,13 +211,29 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#the-scenario" id="toc-the-scenario" class="nav-link active" data-scroll-target="#the-scenario">The scenario</a></li>
+  <li><a href="#course-pages-you-need" id="toc-course-pages-you-need" class="nav-link" data-scroll-target="#course-pages-you-need">Course pages you need</a></li>
+  <li><a href="#data-and-setup" id="toc-data-and-setup" class="nav-link" data-scroll-target="#data-and-setup">Data and setup</a></li>
+  <li><a href="#task-1-read-qc" id="toc-task-1-read-qc" class="nav-link" data-scroll-target="#task-1-read-qc">Task 1: Read QC</a></li>
+  <li><a href="#task-2-species-and-contamination-check" id="toc-task-2-species-and-contamination-check" class="nav-link" data-scroll-target="#task-2-species-and-contamination-check">Task 2: Species and contamination check</a></li>
+  <li><a href="#task-3-trimming-and-filtering" id="toc-task-3-trimming-and-filtering" class="nav-link" data-scroll-target="#task-3-trimming-and-filtering">Task 3: Trimming and filtering</a></li>
+  <li><a href="#task-4-map-to-the-reference-and-call-variants" id="toc-task-4-map-to-the-reference-and-call-variants" class="nav-link" data-scroll-target="#task-4-map-to-the-reference-and-call-variants">Task 4: Map to the reference and call variants</a></li>
+  <li><a href="#task-5-assemble-and-compare-to-the-reference" id="toc-task-5-assemble-and-compare-to-the-reference" class="nav-link" data-scroll-target="#task-5-assemble-and-compare-to-the-reference">Task 5: Assemble and compare to the reference</a></li>
+  <li><a href="#task-6-conclusion-and-recommendation" id="toc-task-6-conclusion-and-recommendation" class="nav-link" data-scroll-target="#task-6-conclusion-and-recommendation">Task 6: Conclusion and recommendation</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assessment</h1>
+<h1 class="title">Assignment: QC evaluation of a new sequencing platform</h1>
 </div>
 
 
@@ -196,9 +250,390 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>More details will be communicated to you via email.</p>
+<section id="the-scenario" class="level1">
+<h1>The scenario</h1>
+<p>Your research institute has just bought a new Illumina sequencer, and its first run produced reads for two <em>Salmonella</em> Paratyphi B isolates, <strong>Group2</strong> and <strong>Group4</strong>. You are the only person at the institute who has taken a bacterial genomics course, so the head of department has asked you to analyse the run and tell the head of the institute whether the machine works.</p>
+<p>Every step uses only tools and commands taught in this course.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What you hand in
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>A results table</strong>, using the template in Task 6.</li>
+<li><strong>A short presentation</strong> (6–8 slides) for the head of the institute.</li>
+<li><strong>A commands file</strong> (<code>commands.sh</code>) listing every command you ran, in order.</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="course-pages-you-need" class="level1">
+<h1>Course pages you need</h1>
+<p>Four of the course pages cover everything; re-read the sections named below before you start.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>What you do</th>
+<th>Course page and section</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Count reads, estimate depth, FastQC, MultiQC</td>
+<td><a href="../Day1/QC.html">QC</a>: Initial data exploration, Reads QC</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Confirm the species, check for contamination</td>
+<td><a href="../Day1/QC.html">QC</a>: Mash, Bactinspector</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Trim and filter reads</td>
+<td><a href="../Day1/QC.html">QC</a>: Read Trimming/Filtering (fastp)</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Map to the reference and call variants</td>
+<td><a href="../Day3/Phylogenetics.html">Phylogenetics</a>: snippy, its log, VCF and <code>snps.tab</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Assemble and compare to the reference</td>
+<td><a href="../Day1/Assembly.html">Assembly</a>: SPAdes, QUAST</td>
+</tr>
+<tr class="even">
+<td>4–5</td>
+<td>Count lines with <code>grep</code>, <code>cut</code>, <code>sort</code>, <code>uniq -c</code></td>
+<td><a href="../Day2/Annotation.html">Annotation</a>: Explore Annotation Files</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>Decide and recommend</td>
+<td>Your results from Tasks 1–5</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-and-setup" class="level1">
+<h1>Data and setup</h1>
+<p>You need four FASTQ files (25–28 MB each) and the CP000886 reference genome. Work on your Amazon EC2 instance, as in the course; the commands below download everything with <code>wget</code>. If you prefer to download in a browser, use these links:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Sample</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Group2_S2_L001_R1_001.fastq.gz</code></td>
+<td>Group2, read 1</td>
+<td><a href="https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data/Group2_S2_L001_R1_001.fastq.gz">download</a></td>
+</tr>
+<tr class="even">
+<td><code>Group2_S2_L001_R2_001.fastq.gz</code></td>
+<td>Group2, read 2</td>
+<td><a href="https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data/Group2_S2_L001_R2_001.fastq.gz">download</a></td>
+</tr>
+<tr class="odd">
+<td><code>Group4_S4_L001_R1_001.fastq.gz</code></td>
+<td>Group4, read 1</td>
+<td><a href="https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data/Group4_S4_L001_R1_001.fastq.gz">download</a></td>
+</tr>
+<tr class="even">
+<td><code>Group4_S4_L001_R2_001.fastq.gz</code></td>
+<td>Group4, read 2</td>
+<td><a href="https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data/Group4_S4_L001_R2_001.fastq.gz">download</a></td>
+</tr>
+<tr class="odd">
+<td><code>CP000886.fasta</code></td>
+<td>Reference, <em>S.</em> Paratyphi B SPB7</td>
+<td><a href="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&amp;id=CP000886&amp;rettype=fasta&amp;retmode=text">download</a> (save as <code>CP000886.fasta</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>All four read files are also listed in the <a href="https://github.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/tree/main/course_modules/Projects/project2/data">project data folder on GitHub</a>, and the reference record is on <a href="https://www.ncbi.nlm.nih.gov/nuccore/CP000886">NCBI</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> /home/ubuntu/Data/Project/<span class="dt">{reads</span><span class="op">,</span><span class="dt">reference</span><span class="op">,</span><span class="dt">QC</span><span class="op">,</span><span class="dt">snippy</span><span class="op">,</span><span class="dt">assembly}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/ubuntu/Data/Project/reads</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">URL</span><span class="op">=</span>https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="va">$URL</span>/Group2_S2_L001_R1_001.fastq.gz</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="va">$URL</span>/Group2_S2_L001_R2_001.fastq.gz</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="va">$URL</span>/Group4_S4_L001_R1_001.fastq.gz</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="va">$URL</span>/Group4_S4_L001_R2_001.fastq.gz</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/ubuntu/Data/Project/reference</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> CP000886.fasta <span class="st">"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&amp;id=CP000886&amp;rettype=fasta&amp;retmode=text"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>File names follow the Illumina pattern <code>Sample_S#_Lane_Read_001.fastq.gz</code>: <code>Group2_S2_L001_R1_001.fastq.gz</code> is sample Group2, lane 1, read 1 of each pair. CP000886 is the chromosome of <em>S.</em> Paratyphi B strain SPB7, so your isolates should be very close to it: almost every difference you find is either a small real difference or a sequencing error.</p>
+</section>
+<section id="task-1-read-qc" class="level1">
+<h1>Task 1: Read QC</h1>
+<p>Find out how much data the run produced and whether its quality is acceptable, before any analysis.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/ubuntu/Data/Project/reads</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Reads and bases per file (repeat for all four files)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$(</span><span class="fu">cat</span> Group2_S2_L001_R1_001.fastq.gz <span class="kw">|</span> <span class="fu">gunzip</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span><span class="va">)</span>/4 <span class="kw">|</span> <span class="fu">bc</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">zcat</span> Group2_S2_L001_R1_001.fastq.gz <span class="kw">|</span> <span class="fu">paste</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f</span> 2 <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-d</span> <span class="st">'\n'</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-c</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference length</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"&gt;"</span> ../reference/CP000886.fasta <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-d</span> <span class="st">'\n'</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-c</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># FastQC on all files, then one MultiQC report</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="pp">*</span>.fastq.gz</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ex">multiqc</span> .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>How many read pairs does each sample have? Do R1 and R2 match?</li>
+<li>Estimate depth of coverage: (bases in R1 + bases in R2) ÷ reference length. Is it at least 30×?</li>
+<li>In <em>Per base sequence quality</em>, at which position does quality drop below 28 (the course threshold) in R1 and in R2?</li>
+<li>Look at <em>Per tile sequence quality</em>, <em>Per base N content</em> and <em>Per base sequence content</em>. Do you see problems at particular positions or tiles? Are they the same in both samples?</li>
+<li>Is GC content close to the expected ~52% for <em>Salmonella</em>? Is there a second peak?</li>
+<li>Is there adapter content?</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="task-2-species-and-contamination-check" class="level1">
+<h1>Task 2: Species and contamination check</h1>
+<p>Confirm that both samples really are <em>Salmonella</em> and close to the reference. A mixed or wrong sample would be a sample problem, not a machine problem.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sketch each sample's reads</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mash</span> sketch <span class="at">-r</span> <span class="at">-m</span> 2 <span class="at">-o</span> Group2.msh Group2_S2_L001_R1_001.fastq.gz Group2_S2_L001_R2_001.fastq.gz</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mash</span> sketch <span class="at">-r</span> <span class="at">-m</span> 2 <span class="at">-o</span> Group4.msh Group4_S4_L001_R1_001.fastq.gz Group4_S4_L001_R2_001.fastq.gz</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare with the course reference sketches and with CP000886</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/ubuntu/Data/Reference</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">mash</span> dist salmonella.msh /home/ubuntu/Data/Project/reads/Group2.msh</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">mash</span> dist klebsiella.msh /home/ubuntu/Data/Project/reads/Group2.msh</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">mash</span> sketch <span class="at">-o</span> CP000886.msh /home/ubuntu/Data/Project/reference/CP000886.fasta</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">mash</span> dist CP000886.msh /home/ubuntu/Data/Project/reads/Group2.msh</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ...repeat for Group4</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Bactinspector</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/ubuntu/Data/Project/reads</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="ex">bactinspector</span> closest_match <span class="at">-fq</span> <span class="st">"*_R2_001.fastq.gz"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>What is the Mash distance of each sample to CP000886? Is it below 0.05 (same species)?</li>
+<li>What closest match does Bactinspector report? Look it up in ENA, as in the course.</li>
+<li>Do the shared hashes suggest contamination in either sample?</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="task-3-trimming-and-filtering" class="level1">
+<h1>Task 3: Trimming and filtering</h1>
+<p>See how much of the data survives a standard quality filter.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="at">-i</span> Group2_S2_L001_R1_001.fastq.gz <span class="at">-I</span> Group2_S2_L001_R2_001.fastq.gz <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> Group2_1.clean.fastq.gz <span class="at">-O</span> Group2_2.clean.fastq.gz <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--qualified_quality_phred</span> 20 <span class="at">--length_required</span> 50 <span class="at">--detect_adapter_for_pe</span> <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--html</span> Group2_fastp.html <span class="at">--json</span> Group2_fastp.json <span class="at">--thread</span> 4</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ...repeat for Group4, then</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">multiqc</span> .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>What percentage of reads passed filtering in each sample?</li>
+<li>Apply the course decision point: more than 80% of reads pass and mean quality above Q30. Does each sample pass?</li>
+<li>Did trimming fix the problems you saw in Task 1, or are some still there?</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="task-4-map-to-the-reference-and-call-variants" class="level1">
+<h1>Task 4: Map to the reference and call variants</h1>
+<p>Use <code>snippy</code>, as in the Phylogenetics practical. It maps with <code>bwa mem</code>, marks duplicates with <code>samtools</code> and calls variants with FreeBayes. Use the <strong>raw</strong> reads: you are judging the machine, not the trimmer. Set snippy’s filters to the project thresholds, minimum depth 20 and minimum quality 30.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate snippy_env</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/ubuntu/Data/Project/snippy</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">snippy</span> <span class="at">--outdir</span> Group2 <span class="at">--R1</span> ../reads/Group2_S2_L001_R1_001.fastq.gz <span class="at">--R2</span> ../reads/Group2_S2_L001_R2_001.fastq.gz <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--ref</span> ../reference/CP000886.fasta <span class="at">--mincov</span> 20 <span class="at">--minqual</span> 30 <span class="at">--cpus</span> 4 <span class="at">--ram</span> 4 <span class="at">--force</span> <span class="at">--quiet</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">snippy</span> <span class="at">--outdir</span> Group4 <span class="at">--R1</span> ../reads/Group4_S4_L001_R1_001.fastq.gz <span class="at">--R2</span> ../reads/Group4_S4_L001_R2_001.fastq.gz <span class="dt">\</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">--ref</span> ../reference/CP000886.fasta <span class="at">--mincov</span> 20 <span class="at">--minqual</span> 30 <span class="at">--cpus</span> 4 <span class="at">--ram</span> 4 <span class="at">--force</span> <span class="at">--quiet</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Check what snippy ran</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"bwa mem"</span> Group2/snps.log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Snippy keeps the unfiltered calls in <code>snps.raw.vcf</code> and the filtered calls in <code>snps.vcf</code>. Count both with <code>grep</code>, as in the Annotation practical (lines starting <code>#</code> are headers):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Before filtering</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"^#"</span> Group2/snps.raw.vcf <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span>                       <span class="co"># all variants</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"^#"</span> Group2/snps.raw.vcf <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="st">"TYPE=snp"</span>          <span class="co"># SNPs</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"^#"</span> Group2/snps.raw.vcf <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="at">-E</span> <span class="st">"TYPE=(ins|del)"</span> <span class="co"># indels</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># After filtering: the same three commands on Group2/snps.vcf, plus the summary</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> Group2/snps.txt</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Substitution types (columns 4 and 5 of a VCF are REF and ALT)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"^#"</span> Group2/snps.raw.vcf <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"TYPE=snp"</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f</span> 4,5 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"^#"</span> Group2/snps.vcf <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"TYPE=snp"</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f</span> 4,5 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Transitions</strong> are A↔︎G and C↔︎T; all other substitutions are <strong>transversions</strong>. Add up each group and compute Ts/Tv = transitions ÷ transversions. Random sequencing errors give Ts/Tv of about 0.5, because there are twice as many possible transversions; real bacterial differences give a clearly higher ratio.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>How many SNPs and indels does each sample have before and after filtering? What fraction did the filter remove?</li>
+<li>What is Ts/Tv before and after filtering? What does the change tell you about the removed calls?</li>
+<li>Both isolates are the same serovar as the reference. Is the number of filtered SNPs plausible (tens to a few hundred), or far higher?</li>
+<li>Open <code>Group2/snps.bam</code> and three removed variants in IGV or Artemis. Do they cluster at read ends, on one strand, or next to each other?</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="task-5-assemble-and-compare-to-the-reference" class="level1">
+<h1>Task 5: Assemble and compare to the reference</h1>
+<p>An assembly gives a second, independent view of read errors. Assemble each sample from its trimmed reads with SPAdes (about 20 minutes each), then compare both assemblies to CP000886 with QUAST.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> deactivate</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/ubuntu/Data/Project/reads</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">spades.py</span> <span class="at">-1</span> Group2_1.clean.fastq.gz <span class="at">-2</span> Group2_2.clean.fastq.gz <span class="at">-o</span> ../assembly/Group2 <span class="at">--careful</span> <span class="at">-t</span> 4 <span class="at">-m</span> 8</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">spades.py</span> <span class="at">-1</span> Group4_1.clean.fastq.gz <span class="at">-2</span> Group4_2.clean.fastq.gz <span class="at">-o</span> ../assembly/Group4 <span class="at">--careful</span> <span class="at">-t</span> 4 <span class="at">-m</span> 8</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">quast.py</span> ../assembly/Group2/scaffolds.fasta ../assembly/Group4/scaffolds.fasta <span class="dt">\</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">-r</span> ../reference/CP000886.fasta <span class="at">-o</span> ../assembly/quast <span class="at">--threads</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>From <code>report.txt</code> or <code>report.html</code> in <code>assembly/quast</code>:</p>
+<ol type="1">
+<li>Number of contigs, N50 and total length for each sample. Is total length close to the reference (~4.86 Mb)?</li>
+<li>Genome fraction (%): how much of the reference is covered?</li>
+<li>Mismatches per 100 kbp and indels per 100 kbp. Which sample has more? Do they agree with Task 4?</li>
+<li>Could a poor assembly be explained by low depth (Task 1) or contamination (Task 2) instead of the machine?</li>
+</ol>
+</div>
+</div>
+<p><strong>Optional:</strong> run <code>snippy-core</code> on <code>Group2</code> and <code>Group4</code> as in the Phylogenetics practical. How many core SNPs separate the two isolates?</p>
+</section>
+<section id="task-6-conclusion-and-recommendation" class="level1">
+<h1>Task 6: Conclusion and recommendation</h1>
+<p>Combine Tasks 1–5 into one verdict for the head of the institute.</p>
+<ol type="1">
+<li><strong>Machine or sample?</strong> A machine fault shows in both samples, at the same read positions or tiles. A sample fault shows in one sample only: wrong species, mixed GC, low depth.</li>
+<li><strong>Was the first run a success?</strong> Answer yes, no, or partly, with your three strongest pieces of evidence.</li>
+<li><strong>Should the institute keep the sequencer?</strong> What would you recommend next (for example, rerun a well-characterised control strain, ask the vendor to check the affected cycles or tiles, repeat library preparation)?</li>
+</ol>
+<p><strong>Results table</strong> (copy into your presentation):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Group2</th>
+<th>Group4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Read pairs</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Estimated depth (×)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Position where R1 / R2 quality drops below 28</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Problems seen in FastQC</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Mash distance to CP000886</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Reads passing fastp (%)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>SNPs before / after filtering</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Indels before / after filtering</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Ts/Tv before / after filtering</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Contigs / N50 (QUAST)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Genome fraction (%)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Mismatches / indels per 100 kbp</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Suggested slides:</strong> (1) the verdict in one sentence; (2) what was sequenced and how you analysed it; (3) read QC, both samples side by side; (4) the plot that shows the problem; (5) variants before and after filtering, with Ts/Tv; (6) assembly comparison; (7) recommendation and next test.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

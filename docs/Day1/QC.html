@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>QC – Bioinformatic methods for bacterial genomics, Cluj-Napoca, October 2026</title>
+<title>Quality Control – Bioinformatic methods for bacterial genomics, Cluj-Napoca, October 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,8 +107,12 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-training-materials">    
         <li>
+    <a class="dropdown-item" href="../Pre-course/recap.html">
+ <span class="dropdown-text">Introduction to Linux</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../Day1/QC.html">
- <span class="dropdown-text">QC</span></a>
+ <span class="dropdown-text">Quality Control</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../Day1/Assembly.html">
@@ -152,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">QC</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Quality Control</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -179,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">QC</h1>
+<h1 class="title">Quality Control</h1>
 </div>
 
 
@@ -202,85 +206,27 @@ ul.task-list li input[type="checkbox"] {
 <p>1. Perform quality control (QC) assessments on FASTQ-formatted sequence data obtained from both short and long reads sequencing technologies.</p>
 <p>2. Critically evaluate and interpret QC outputs to determine data reliability.</p>
 </section>
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<section id="brief-recap" class="level2">
-<h2 class="anchored" data-anchor-id="brief-recap">Brief recap</h2>
-<p>Below you can find a list of frequently used commands for you to remember them:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Command</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ls</td>
-<td>Lists the contents of the current directory</td>
-</tr>
-<tr class="even">
-<td>mkdir</td>
-<td>Makes a new directory</td>
-</tr>
-<tr class="odd">
-<td>mv</td>
-<td>Moves or renames a file</td>
-</tr>
-<tr class="even">
-<td>cp</td>
-<td>Copies a file</td>
-</tr>
-<tr class="odd">
-<td>rm</td>
-<td>Removes a file</td>
-</tr>
-<tr class="even">
-<td>mkdir</td>
-<td>Makes a new directory</td>
-</tr>
-<tr class="odd">
-<td>cat</td>
-<td>Concatenates files</td>
-</tr>
-<tr class="even">
-<td>more</td>
-<td>Displays the contents of a file one page at a time</td>
-</tr>
-<tr class="odd">
-<td>head</td>
-<td>Displays the first ten lines of a file</td>
-</tr>
-<tr class="even">
-<td>tail</td>
-<td>Displays the last ten lines of a file</td>
-</tr>
-<tr class="odd">
-<td>cd</td>
-<td>Changes current working directory</td>
-</tr>
-<tr class="even">
-<td>pwd</td>
-<td>Prints working directory</td>
-</tr>
-<tr class="odd">
-<td>find</td>
-<td>Finds files matching an expression</td>
-</tr>
-<tr class="even">
-<td>grep</td>
-<td>Searches a file for patterns</td>
-</tr>
-<tr class="odd">
-<td>wc</td>
-<td>Counts the lines, words, characters, and bytes in a file</td>
-</tr>
-<tr class="even">
-<td>kill</td>
-<td>Stops a process</td>
-</tr>
-</tbody>
-</table>
+<section id="quality-control" class="level1">
+<h1>Quality Control</h1>
+<section id="data-retrieval-from-the-european-nucleotide-archive-ena" class="level4">
+<h4 class="anchored" data-anchor-id="data-retrieval-from-the-european-nucleotide-archive-ena">Data retrieval from the European Nucleotide Archive (ENA)</h4>
+<p>The European Nucleotide Archive (ENA) provides a comprehensive record of the world’s nucleotide sequencing information, covering raw sequencing Data, sequence assembly information and functional annotation.</p>
+<p>Access to ENA Data is provided through the browser, through search tools, through large scale file download and through the API.</p>
+</section>
+<section id="inspect-your-data" class="level3">
+<h3 class="anchored" data-anchor-id="inspect-your-data">Inspect your data</h3>
+<ol type="1">
+<li>Connect to your Amazon EC2 Ubuntu instance via ssh or via the web interface.</li>
+<li>Check the directory called Data in /home/ubuntu/</li>
+</ol>
+<p><code>cd /home/ubuntu/Data</code></p>
+<ol start="3" type="1">
+<li><p>Check subdirectories for each of your samples</p>
+<p><code>cd /home/ubuntu/Data/G18255819/illumina</code></p>
+<p><code>cd /home/ubuntu/Data/G18255819/nanopore</code></p>
+<p><code>cd /home/ubuntu/Data/G18252308/illumina</code></p>
+<p><code>cd /home/ubuntu/Data/G18252308/nanopore</code></p></li>
+</ol>
 </section>
 <section id="commonly-used-file-formats-for-ngs-data" class="level2">
 <h2 class="anchored" data-anchor-id="commonly-used-file-formats-for-ngs-data">Commonly used file formats for NGS data</h2>
@@ -448,20 +394,26 @@ CCCCCFDDFFFFGGGGGGGGGGHHHHHHHHHHHGGGGHHHHHHHHHHHHHHHGHHGHHIIHHGGGGGGHHHHHHHHHHHH
 <p>- A score of 40 denotes a 1 in 10,000 chance of an error, i.e.&nbsp;99.99% accuracy.</p>
 <p>You can read more about the FastQ file format and quality scores here:</p>
 <p>Cock, P. J., Fields, C. J., Goto, N., Heuer, M. L., &amp; Rice, P. M. (2010). The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. <em>Nucleic Acids Research</em>, <strong>38</strong>, 1767–1771. <a href="https://doi.org/10.1093/nar/gkp1137" class="uri">https://doi.org/10.1093/nar/gkp1137</a>.</p>
+<p><strong>Quantitative Coverage Calculations</strong></p>
+<p>The theoretical coverage depth formula:</p>
+<p><img src="images/depth.png" class="img-fluid" width="446"></p>
+<p><strong>Bacterial coverage benchmarks</strong>:</p>
+<ul>
+<li><p><strong>10× depth:</strong> Minimum for basic variant calling.</p></li>
+<li><p><strong>30× mapped coverage:</strong> Recommended benchmark for reliable <em>de novo</em> genome assembly.</p></li>
+<li><p><strong>&gt;100× depth:</strong> Excessive coverage that increases computational load; pipeline recommendation is to downsample.</p></li>
+</ul>
 </section>
 <section id="sam-and-bam" class="level3">
 <h3 class="anchored" data-anchor-id="sam-and-bam">SAM and BAM</h3>
 <p>A <strong>SAM file</strong> (usually named *.sam) is used to represent aligned sequences. It is particularly useful for storing the results of genomic or transcriptomic sequence reads aligned against a reference genome sequence. The <strong>BAM file</strong> format is a compressed form of SAM. This has the disadvantage that it is not readable by a human but has the advantage of being smaller than the corresponding SAM file and thus easier to share and copy between locations.</p>
 <p>You can read about SAM and BAM formats here:</p>
 <p>- Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth, G., Abecasis, G., Durbin, R., &amp; 1000 Genome Project Data Processing Subgroup (2009). The Sequence Alignment/Map format and SAMtools. <em>Bioinformatics</em>, <strong>25</strong>, 2078–2079. <a href="https://doi.org/10.1093/bioinformatics/btp352" class="uri">https://doi.org/10.1093/bioinformatics/btp352</a> - <a href="https://samtools.github.io/hts-specs/SAMv1.pdf" class="uri">https://samtools.github.io/hts-specs/SAMv1.pdf</a>.</p>
-<p>We can view BAM files graphically using specialised genome browsers software such as (we will be working with one of them in the Genome Visualisation Tools module):</p>
-<p>- <a href="https://igv.org/">IGV</a></p>
-<p>- <a href="http://sanger-pathogens.github.io/Artemis/Artemis/">Artemis</a></p>
 <p>An example <strong>SAM file</strong> is shown in the image below, along with the 11 mandatory fields of this standard:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://user-images.githubusercontent.com/65819144/230166077-264a6161-ec8c-47d7-87b7-8e073080a548.jpg" class="img-fluid figure-img"></p>
-<figcaption>SAMformat</figcaption>
+<figcaption>SAM format</figcaption>
 </figure>
 </div>
 <p>(<em>Image from <a href="https://datacarpentry.org/wrangling-genomics">Data Wrangling and Processing for Genomics</a></em>)</p>
@@ -472,49 +424,121 @@ CCCCCFDDFFFFGGGGGGGGGGHHHHHHHHHHHGGGGHHHHHHHHHHHHHHHGHHGHHIIHHGGGGGGHHHHHHHHHHHH
 <figcaption>SAMformat_fields</figcaption>
 </figure>
 </div>
+<p>In a SAM file, the <strong>Flag</strong> column (usually the second column in an alignment line) is an integer value that encodes various information about a read’s alignment using a bitwise representation. Each bit in the flag represents a specific property of the alignment, and the <strong>hexadecimal (Hex)</strong>, <strong>decimal (Dec)</strong>, and <strong>binary</strong> representations can be used to interpret these flags.</p>
+<p>Here’s a detailed explanation:</p>
 </section>
+<section id="structure-of-the-flag" class="level3">
+<h3 class="anchored" data-anchor-id="structure-of-the-flag"><strong>Structure of the Flag</strong></h3>
+<p>The flag is an <strong>integer value</strong> whose binary representation consists of 12 bits, each indicating a specific property of the read. Here’s the breakdown:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Bit</strong></th>
+<th><strong>Hex</strong></th>
+<th><strong>Dec</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0x1</td>
+<td>1</td>
+<td>The read is paired in sequencing.</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0x2</td>
+<td>2</td>
+<td>The read is mapped in a proper pair.</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0x4</td>
+<td>4</td>
+<td>The read is unmapped.</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0x8</td>
+<td>8</td>
+<td>The mate is unmapped.</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>0x10</td>
+<td>16</td>
+<td>The read is on the reverse strand.</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>0x20</td>
+<td>32</td>
+<td>The mate is on the reverse strand.</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>0x40</td>
+<td>64</td>
+<td>The read is the first in a pair.</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>0x80</td>
+<td>128</td>
+<td>The read is the second in a pair.</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>0x100</td>
+<td>256</td>
+<td>The alignment is not primary.</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>0x200</td>
+<td>512</td>
+<td>The read fails quality control checks.</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>0x400</td>
+<td>1024</td>
+<td>The read is a PCR or optical duplicate.</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>0x800</td>
+<td>2048</td>
+<td>The read is supplementary (e.g., split-read).</td>
+</tr>
+</tbody>
+</table>
+<p>The flag is the sum of all applicable properties. For example:</p>
+<p><strong>For a flag with value 83 (a written in decimal), the binary is</strong> 000000<strong>1</strong>0<strong>1</strong>00<strong>11.</strong></p>
+<p>To decode the bits with value <strong>1</strong>, start from right to left:</p>
+<ul>
+<li><p><strong>1 (0x1)</strong>: On position <strong>0</strong> from right to left, the bit value is <strong>1</strong>. This means that the read is paired.</p></li>
+<li><p><strong>2 (0x2)</strong>: On position <strong>1</strong> from right to left, the bit value is <strong>1</strong>. This means that the read is mapped in a proper pair.</p></li>
+<li><p><strong>16 (0x10)</strong>: On position <strong>4</strong> from right to left, the bit value is <strong>1</strong>. This means that the read is on the reverse strand.</p></li>
+<li><p><strong>64 (0x40)</strong>: On position <strong>6</strong> from right to left, the bit value is <strong>1</strong>. This means that the read is the first read in a pair.</p></li>
+</ul>
+<p>Overall interpretation of a flag with value 83: this is the first read in a properly paired alignment, and it is mapped to the reverse strand.</p>
 </section>
-</section>
-<section id="quality-control" class="level1">
-<h1>Quality Control</h1>
-<section id="data-retrieval-from-the-european-nucleotide-archive-ena" class="level4">
-<h4 class="anchored" data-anchor-id="data-retrieval-from-the-european-nucleotide-archive-ena">Data retrieval from the European Nucleotide Archive (ENA)</h4>
-<p>The European Nucleotide Archive (ENA) provides a comprehensive record of the world’s nucleotide sequencing information, covering raw sequencing Data, sequence assembly information and functional annotation.</p>
-<p>Access to ENA Data is provided through the browser, through search tools, through large scale file download and through the API.</p>
-</section>
-<section id="download-the-data-programatically" class="level3">
-<h3 class="anchored" data-anchor-id="download-the-data-programatically">Download the Data programatically</h3>
+<section id="how-to-interpret-a-sam-file-flag" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-interpret-a-sam-file-flag"><strong>How to interpret a SAM file flag</strong></h3>
 <ol type="1">
-<li>Connect to your Amazon EC2 Ubuntu instance via ssh or via the web interface.</li>
+<li><p>Take the decimal value in the second column.</p></li>
+<li><p>Convert it to binary (or refer to the above table).</p></li>
+<li><p>Decode each bit to determine the alignment properties.</p></li>
 </ol>
 </section>
-<section id="how-to-retrieve-data-for-the-samples-g18255819-and-g18252308-from-ena" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-retrieve-data-for-the-samples-g18255819-and-g18252308-from-ena">How to retrieve Data for the samples G18255819 and G18252308 from ENA</h3>
-<ol start="3" type="1">
-<li>Create a directory called Data in /home/ubuntu/</li>
-</ol>
-<p><code>mkdir /home/ubuntu/Data</code></p>
-<ol start="3" type="1">
-<li><p>Create subdirectories for each of your samples</p>
-<p><code>mkdir /home/ubuntu/Data/G18255819/illumina</code></p>
-<p><code>mkdir /home/ubuntu/Data/G18255819/nanopore</code></p>
-<p><code>mkdir /home/ubuntu/Data/G18252308/illumina</code></p>
-<p><code>mkdir /home/ubuntu/Data/G18252308/nanopore</code></p></li>
-<li><p>Download the reads for each sample</p></li>
-</ol>
-<p><code>cd /home/ubuntu/Data/G18255819/nanopore</code></p>
-<p><code>wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR818/004/ERR8187234/ERR8187234.fastq.gz</code></p>
-<p><code>cd /home/ubuntu/Data/G18255819/illumina</code></p>
-<p><code>wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR478/004/ERR4784794/ERR4784794_1.fastq.gz</code></p>
-<p><code>wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR478/004/ERR4784794/ERR4784794_2.fastq.gz</code></p>
-<p><code>cd /home/ubuntu/Data/G18252308/nanopore</code></p>
-<p><code>wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR818/005/ERR8187245/ERR8187245.fastq.gz</code></p>
-<p><code>cd /home/ubuntu/Data/G18252308/illumina</code></p>
-<p><code>wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR463/006/ERR4635696/ERR4635696_1.fastq.gz</code></p>
-<p><code>wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR463/006/ERR4635696/ERR4635696_2.fastq.gz</code></p>
-</section>
-<section id="section" class="level3">
-<h3 class="anchored" data-anchor-id="section"></h3>
 </section>
 </section>
 <section id="initial-data-exploration" class="level1">
@@ -578,11 +602,15 @@ CCCCCFDDFFFFGGGGGGGGGGHHHHHHHHHHHGGGGHHHHHHHHHHHHHHHGHHGHHIIHHGGGGGGHHHHHHHHHHHH
 <p><code>multiqc ERR4784794</code></p>
 <p>Open in browser:</p>
 <p>Navigate to <code>/home/ubuntu/Data/QC</code> and double-click <code>multiqc_report.html</code></p>
-<p><strong>Key metrics to check:</strong></p>
-<p>Per base sequence quality (should be &gt;28 for most bases)</p>
-<p>Per sequence quality scores (peak should be &gt;30)</p>
-<p>Adapter content (should be minimal)</p>
-<p>GC content (should match expected ~33% for <em>S. aureus</em>)</p>
+<p><strong>Quality Control Metrics to Evaluate:</strong></p>
+<ul>
+<li><p>Per base sequence quality (should be &gt;28 for most bases)</p></li>
+<li><p>Per sequence quality scores (peak should be &gt;30)</p></li>
+<li><p>Adapter content (should be minimal)</p></li>
+<li><p>GC content (should match expected ~33% for <em>S. aureus</em>)</p></li>
+<li><p><strong>Per-Cycle GC Content:</strong> Fluctuations in GC percentage during early sequencing cycles indicate residual adapter/primer contamination.</p></li>
+<li><p><strong>PCR Duplicates:</strong> Marked by identical alignment start coordinates; should remain <strong>&lt;5%</strong> in bacterial WGS datasets. Tools like <code>samtools markdup</code> or <code>picard MarkDuplicates</code> detect duplicate reads</p></li>
+</ul>
 </section>
 <section id="read-trimmingfiltering" class="level3">
 <h3 class="anchored" data-anchor-id="read-trimmingfiltering">Read Trimming/Filtering</h3>
@@ -591,6 +619,7 @@ CCCCCFDDFFFFGGGGGGGGGGHHHHHHHHHHHGGGGHHHHHHHHHHHHHHHGHHGHHIIHHGGGGGGHHHHHHHHHHHH
 <h3 class="anchored" data-anchor-id="using-fastp-fast-and-comprehensive">Using fastp (fast and comprehensive)</h3>
 <p>Eg:</p>
 <p><code>fastp -i ERR4635696_1.fastq.gz -I ERR4635696_2.fastq.gz -o ERR4635696_1.clean.fastq.gz -O ERR4635696_2.clean.fastq.gz --qualified_quality_phred 20 --length_required 50 --detect_adapter_for_pe --html sample1_fastp.html --json sample1_fastp.json --thread 4</code></p>
+<p><strong>Assembly Decision Threshold:</strong> If <strong>&gt;80%</strong> of reads pass filtering and the mean base quality is <strong>&gt;Q30</strong>, proceed to assembly.</p>
 </section>
 <section id="re-run-multiqc-to-confirm-improvement" class="level3">
 <h3 class="anchored" data-anchor-id="re-run-multiqc-to-confirm-improvement">Re-run MultiQC to confirm improvement</h3>
@@ -609,6 +638,32 @@ CCCCCFDDFFFFGGGGGGGGGGHHHHHHHHHHHGGGGHHHHHHHHHHHHHHHGHHGHHIIHHGGGGGGHHHHHHHHHHHH
 <p><code>mash sketch -r -m 2 -o sample1.msh sample1_1.fastq.gz sample1_2.fastq.gz</code></p>
 <p><code>mash info sample1.msh</code></p>
 <p>Compare against other reference genomes.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Threshold</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Mash Distance</strong></td>
+<td>≤ 0.05</td>
+<td>Same species isolate</td>
+</tr>
+<tr class="even">
+<td><strong>Mash Distance</strong></td>
+<td>&gt; 0.05</td>
+<td>Different species / divergence</td>
+</tr>
+<tr class="odd">
+<td><strong>p-value</strong></td>
+<td>≤ 1e-5</td>
+<td>High statistical confidence</td>
+</tr>
+</tbody>
+</table>
 <p>Eg:</p>
 <p><code>mash dist reference.msh sample.msh</code></p>
 <p>Output:</p>
@@ -669,6 +724,14 @@ CCCCCFDDFFFFGGGGGGGGGGHHHHHHHHHHHGGGGHHHHHHHHHHHHHHHGHHGHHIIHHGGGGGGHHHHHHHHHHHH
 <p><code>mash dist mssa.msh ../G18252308/illumina/sample.msh</code></p>
 <p><strong><em>Which is the closest reference genome to your samples?</em></strong></p>
 </section>
+</section>
+<section id="automated-taxonomic-verification" class="level1">
+<h1>Automated Taxonomic Verification</h1>
+<ul>
+<li><p><strong>Bactinspector:</strong> Runs Mash distance computations against curated species databases.</p></li>
+<li><p><strong>Confindr:</strong> Identifies intraspecies contamination by detecting unexpected heterozygous SNPs in pure haploid bacterial isolates.</p></li>
+<li><p><strong>Kraken:</strong> Performs k-mer-based taxonomic classification across reads</p></li>
+</ul>
 </section>
 <section id="species-identification-with-bactinspector" class="level1">
 <h1>Species Identification with Bactinspector</h1>

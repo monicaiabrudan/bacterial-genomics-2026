@@ -1,0 +1,27 @@
+---
+title: "Introduction to Linux"
+format: html
+---
+
+Below you can find a list of frequently used commands for you to remember them:
+
+| Command | What it does                                             |
+|---------|----------------------------------------------------------|
+| ls      | Lists the contents of the current directory              |
+| mkdir   | Makes a new directory                                    |
+| mv      | Moves or renames a file                                  |
+| cp      | Copies a file                                            |
+| rm      | Removes a file                                           |
+| mkdir   | Makes a new directory                                    |
+| cat     | Concatenates files                                       |
+| more    | Displays the contents of a file one page at a time       |
+| head    | Displays the first ten lines of a file                   |
+| tail    | Displays the last ten lines of a file                    |
+| cd      | Changes current working directory                        |
+| pwd     | Prints working directory                                 |
+| find    | Finds files matching an expression                       |
+| grep    | Searches a file for patterns                             |
+| wc      | Counts the lines, words, characters, and bytes in a file |
+| kill    | Stops a process                                          |
+
+## 

@@ -1,5 +1,243 @@
 ---
-title: "Assessment"
+title: "Assignment: QC evaluation of a new sequencing platform"
+toc: true
+toc-depth: 2
+number-sections: false
 ---
 
-More details will be communicated to you via email.
+# The scenario
+
+Your research institute has just bought a new Illumina sequencer, and its first run produced reads for two *Salmonella* Paratyphi B isolates, **Group2** and **Group4**. You are the only person at the institute who has taken a bacterial genomics course, so the head of department has asked you to analyse the run and tell the head of the institute whether the machine works.
+
+Every step uses only tools and commands taught in this course.
+
+::: callout-note
+## What you hand in
+
+1.  **A results table**, using the template in Task 6.
+2.  **A short presentation** (6–8 slides) for the head of the institute.
+3.  **A commands file** (`commands.sh`) listing every command you ran, in order.
+:::
+
+# Course pages you need
+
+Four of the course pages cover everything; re-read the sections named below before you start.
+
+| Task | What you do | Course page and section |
+|----------------|-------------------|--------------------------------------|
+| 1 | Count reads, estimate depth, FastQC, MultiQC | [QC](../Day1/QC.qmd): Initial data exploration, Reads QC |
+| 2 | Confirm the species, check for contamination | [QC](../Day1/QC.qmd): Mash, Bactinspector |
+| 3 | Trim and filter reads | [QC](../Day1/QC.qmd): Read Trimming/Filtering (fastp) |
+| 4 | Map to the reference and call variants | [Phylogenetics](../Day3/Phylogenetics.qmd): snippy, its log, VCF and `snps.tab` |
+| 5 | Assemble and compare to the reference | [Assembly](../Day1/Assembly.qmd): SPAdes, QUAST |
+| 4–5 | Count lines with `grep`, `cut`, `sort`, `uniq -c` | [Annotation](../Day2/Annotation.qmd): Explore Annotation Files |
+| 6 | Decide and recommend | Your results from Tasks 1–5 |
+
+# Data and setup
+
+You need four FASTQ files (25–28 MB each) and the CP000886 reference genome. Work on your Amazon EC2 instance, as in the course; the commands below download everything with `wget`. If you prefer to download in a browser, use these links:
+
+| File | Sample | Download |
+|-------------------|------------------------|------------------------------|
+| `Group2_S2_L001_R1_001.fastq.gz` | Group2, read 1 | [download](https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data/Group2_S2_L001_R1_001.fastq.gz) |
+| `Group2_S2_L001_R2_001.fastq.gz` | Group2, read 2 | [download](https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data/Group2_S2_L001_R2_001.fastq.gz) |
+| `Group4_S4_L001_R1_001.fastq.gz` | Group4, read 1 | [download](https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data/Group4_S4_L001_R1_001.fastq.gz) |
+| `Group4_S4_L001_R2_001.fastq.gz` | Group4, read 2 | [download](https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data/Group4_S4_L001_R2_001.fastq.gz) |
+| `CP000886.fasta` | Reference, *S.* Paratyphi B SPB7 | [download](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CP000886&rettype=fasta&retmode=text) (save as `CP000886.fasta`) |
+
+All four read files are also listed in the [project data folder on GitHub](https://github.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/tree/main/course_modules/Projects/project2/data), and the reference record is on [NCBI](https://www.ncbi.nlm.nih.gov/nuccore/CP000886).
+
+``` bash
+mkdir -p /home/ubuntu/Data/Project/{reads,reference,QC,snippy,assembly}
+cd /home/ubuntu/Data/Project/reads
+
+URL=https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data
+wget $URL/Group2_S2_L001_R1_001.fastq.gz
+wget $URL/Group2_S2_L001_R2_001.fastq.gz
+wget $URL/Group4_S4_L001_R1_001.fastq.gz
+wget $URL/Group4_S4_L001_R2_001.fastq.gz
+
+cd /home/ubuntu/Data/Project/reference
+wget -O CP000886.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CP000886&rettype=fasta&retmode=text"
+```
+
+File names follow the Illumina pattern `Sample_S#_Lane_Read_001.fastq.gz`: `Group2_S2_L001_R1_001.fastq.gz` is sample Group2, lane 1, read 1 of each pair. CP000886 is the chromosome of *S.* Paratyphi B strain SPB7, so your isolates should be very close to it: almost every difference you find is either a small real difference or a sequencing error.
+
+# Task 1: Read QC
+
+Find out how much data the run produced and whether its quality is acceptable, before any analysis.
+
+``` bash
+cd /home/ubuntu/Data/Project/reads
+
+# Reads and bases per file (repeat for all four files)
+echo $(cat Group2_S2_L001_R1_001.fastq.gz | gunzip | wc -l)/4 | bc
+zcat Group2_S2_L001_R1_001.fastq.gz | paste - - - - | cut -f 2 | tr -d '\n' | wc -c
+
+# Reference length
+grep -v ">" ../reference/CP000886.fasta | tr -d '\n' | wc -c
+
+# FastQC on all files, then one MultiQC report
+fastqc *.fastq.gz
+multiqc .
+```
+
+::: {.callout-tip icon="false"}
+## Answer
+
+1.  How many read pairs does each sample have? Do R1 and R2 match?
+2.  Estimate depth of coverage: (bases in R1 + bases in R2) ÷ reference length. Is it at least 30×?
+3.  In *Per base sequence quality*, at which position does quality drop below 28 (the course threshold) in R1 and in R2?
+4.  Look at *Per tile sequence quality*, *Per base N content* and *Per base sequence content*. Do you see problems at particular positions or tiles? Are they the same in both samples?
+5.  Is GC content close to the expected \~52% for *Salmonella*? Is there a second peak?
+6.  Is there adapter content?
+:::
+
+# Task 2: Species and contamination check
+
+Confirm that both samples really are *Salmonella* and close to the reference. A mixed or wrong sample would be a sample problem, not a machine problem.
+
+``` bash
+# Sketch each sample's reads
+mash sketch -r -m 2 -o Group2.msh Group2_S2_L001_R1_001.fastq.gz Group2_S2_L001_R2_001.fastq.gz
+mash sketch -r -m 2 -o Group4.msh Group4_S4_L001_R1_001.fastq.gz Group4_S4_L001_R2_001.fastq.gz
+
+# Compare with the course reference sketches and with CP000886
+cd /home/ubuntu/Data/Reference
+mash dist salmonella.msh /home/ubuntu/Data/Project/reads/Group2.msh
+mash dist klebsiella.msh /home/ubuntu/Data/Project/reads/Group2.msh
+mash sketch -o CP000886.msh /home/ubuntu/Data/Project/reference/CP000886.fasta
+mash dist CP000886.msh /home/ubuntu/Data/Project/reads/Group2.msh
+# ...repeat for Group4
+
+# Bactinspector
+cd /home/ubuntu/Data/Project/reads
+bactinspector closest_match -fq "*_R2_001.fastq.gz"
+```
+
+::: {.callout-tip icon="false"}
+## Answer
+
+1.  What is the Mash distance of each sample to CP000886? Is it below 0.05 (same species)?
+2.  What closest match does Bactinspector report? Look it up in ENA, as in the course.
+3.  Do the shared hashes suggest contamination in either sample?
+:::
+
+# Task 3: Trimming and filtering
+
+See how much of the data survives a standard quality filter.
+
+``` bash
+fastp -i Group2_S2_L001_R1_001.fastq.gz -I Group2_S2_L001_R2_001.fastq.gz \
+  -o Group2_1.clean.fastq.gz -O Group2_2.clean.fastq.gz \
+  --qualified_quality_phred 20 --length_required 50 --detect_adapter_for_pe \
+  --html Group2_fastp.html --json Group2_fastp.json --thread 4
+# ...repeat for Group4, then
+multiqc .
+```
+
+::: {.callout-tip icon="false"}
+## Answer
+
+1.  What percentage of reads passed filtering in each sample?
+2.  Apply the course decision point: more than 80% of reads pass and mean quality above Q30. Does each sample pass?
+3.  Did trimming fix the problems you saw in Task 1, or are some still there?
+:::
+
+# Task 4: Map to the reference and call variants
+
+Use `snippy`, as in the Phylogenetics practical. It maps with `bwa mem`, marks duplicates with `samtools` and calls variants with FreeBayes. Use the **raw** reads: you are judging the machine, not the trimmer. Set snippy's filters to the project thresholds, minimum depth 20 and minimum quality 30.
+
+``` bash
+conda activate snippy_env
+cd /home/ubuntu/Data/Project/snippy
+
+snippy --outdir Group2 --R1 ../reads/Group2_S2_L001_R1_001.fastq.gz --R2 ../reads/Group2_S2_L001_R2_001.fastq.gz \
+  --ref ../reference/CP000886.fasta --mincov 20 --minqual 30 --cpus 4 --ram 4 --force --quiet
+snippy --outdir Group4 --R1 ../reads/Group4_S4_L001_R1_001.fastq.gz --R2 ../reads/Group4_S4_L001_R2_001.fastq.gz \
+  --ref ../reference/CP000886.fasta --mincov 20 --minqual 30 --cpus 4 --ram 4 --force --quiet
+
+# Check what snippy ran
+grep "bwa mem" Group2/snps.log
+```
+
+Snippy keeps the unfiltered calls in `snps.raw.vcf` and the filtered calls in `snps.vcf`. Count both with `grep`, as in the Annotation practical (lines starting `#` are headers):
+
+``` bash
+# Before filtering
+grep -v "^#" Group2/snps.raw.vcf | wc -l                       # all variants
+grep -v "^#" Group2/snps.raw.vcf | grep -c "TYPE=snp"          # SNPs
+grep -v "^#" Group2/snps.raw.vcf | grep -c -E "TYPE=(ins|del)" # indels
+
+# After filtering: the same three commands on Group2/snps.vcf, plus the summary
+cat Group2/snps.txt
+
+# Substitution types (columns 4 and 5 of a VCF are REF and ALT)
+grep -v "^#" Group2/snps.raw.vcf | grep "TYPE=snp" | cut -f 4,5 | sort | uniq -c
+grep -v "^#" Group2/snps.vcf | grep "TYPE=snp" | cut -f 4,5 | sort | uniq -c
+```
+
+**Transitions** are A↔G and C↔T; all other substitutions are **transversions**. Add up each group and compute Ts/Tv = transitions ÷ transversions. Random sequencing errors give Ts/Tv of about 0.5, because there are twice as many possible transversions; real bacterial differences give a clearly higher ratio.
+
+::: {.callout-tip icon="false"}
+## Answer
+
+1.  How many SNPs and indels does each sample have before and after filtering? What fraction did the filter remove?
+2.  What is Ts/Tv before and after filtering? What does the change tell you about the removed calls?
+3.  Both isolates are the same serovar as the reference. Is the number of filtered SNPs plausible (tens to a few hundred), or far higher?
+4.  Open `Group2/snps.bam` and three removed variants in IGV or Artemis. Do they cluster at read ends, on one strand, or next to each other?
+:::
+
+# Task 5: Assemble and compare to the reference
+
+An assembly gives a second, independent view of read errors. Assemble each sample from its trimmed reads with SPAdes (about 20 minutes each), then compare both assemblies to CP000886 with QUAST.
+
+``` bash
+conda deactivate
+cd /home/ubuntu/Data/Project/reads
+spades.py -1 Group2_1.clean.fastq.gz -2 Group2_2.clean.fastq.gz -o ../assembly/Group2 --careful -t 4 -m 8
+spades.py -1 Group4_1.clean.fastq.gz -2 Group4_2.clean.fastq.gz -o ../assembly/Group4 --careful -t 4 -m 8
+
+quast.py ../assembly/Group2/scaffolds.fasta ../assembly/Group4/scaffolds.fasta \
+  -r ../reference/CP000886.fasta -o ../assembly/quast --threads 4
+```
+
+::: {.callout-tip icon="false"}
+## Answer
+
+From `report.txt` or `report.html` in `assembly/quast`:
+
+1.  Number of contigs, N50 and total length for each sample. Is total length close to the reference (\~4.86 Mb)?
+2.  Genome fraction (%): how much of the reference is covered?
+3.  Mismatches per 100 kbp and indels per 100 kbp. Which sample has more? Do they agree with Task 4?
+4.  Could a poor assembly be explained by low depth (Task 1) or contamination (Task 2) instead of the machine?
+:::
+
+**Optional:** run `snippy-core` on `Group2` and `Group4` as in the Phylogenetics practical. How many core SNPs separate the two isolates?
+
+# Task 6: Conclusion and recommendation
+
+Combine Tasks 1–5 into one verdict for the head of the institute.
+
+1.  **Machine or sample?** A machine fault shows in both samples, at the same read positions or tiles. A sample fault shows in one sample only: wrong species, mixed GC, low depth.
+2.  **Was the first run a success?** Answer yes, no, or partly, with your three strongest pieces of evidence.
+3.  **Should the institute keep the sequencer?** What would you recommend next (for example, rerun a well-characterised control strain, ask the vendor to check the affected cycles or tiles, repeat library preparation)?
+
+**Results table** (copy into your presentation):
+
+| Metric                                        | Group2 | Group4 |
+|-----------------------------------------------|--------|--------|
+| Read pairs                                    |        |        |
+| Estimated depth (×)                           |        |        |
+| Position where R1 / R2 quality drops below 28 |        |        |
+| Problems seen in FastQC                       |        |        |
+| Mash distance to CP000886                     |        |        |
+| Reads passing fastp (%)                       |        |        |
+| SNPs before / after filtering                 |        |        |
+| Indels before / after filtering               |        |        |
+| Ts/Tv before / after filtering                |        |        |
+| Contigs / N50 (QUAST)                         |        |        |
+| Genome fraction (%)                           |        |        |
+| Mismatches / indels per 100 kbp               |        |        |
+
+**Suggested slides:** (1) the verdict in one sentence; (2) what was sequenced and how you analysed it; (3) read QC, both samples side by side; (4) the plot that shows the problem; (5) variants before and after filtering, with Ts/Tv; (6) assembly comparison; (7) recommendation and next test.
