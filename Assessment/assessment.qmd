@@ -24,7 +24,7 @@ Every step uses only tools and commands taught in this course.
 Four of the course pages cover everything; re-read the sections named below before you start.
 
 | Task | What you do | Course page and section |
-|----------------|-------------------|--------------------------------------|
+|----|----|----|
 | 1 | Count reads, estimate depth, FastQC, MultiQC | [QC](../Day1/QC.qmd): Initial data exploration, Reads QC |
 | 2 | Confirm the species, check for contamination | [QC](../Day1/QC.qmd): Mash, Bactinspector |
 | 3 | Trim and filter reads | [QC](../Day1/QC.qmd): Read Trimming/Filtering (fastp) |
@@ -38,7 +38,7 @@ Four of the course pages cover everything; re-read the sections named below befo
 You need four FASTQ files (25–28 MB each) and the CP000886 reference genome. Work on your Amazon EC2 instance, as in the course; the commands below download everything with `wget`. If you prefer to download in a browser, use these links:
 
 | File | Sample | Download |
-|-------------------|------------------------|------------------------------|
+|----|----|----|
 | `Group2_S2_L001_R1_001.fastq.gz` | Group2, read 1 | [download](https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data/Group2_S2_L001_R1_001.fastq.gz) |
 | `Group2_S2_L001_R2_001.fastq.gz` | Group2, read 2 | [download](https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data/Group2_S2_L001_R2_001.fastq.gz) |
 | `Group4_S4_L001_R1_001.fastq.gz` | Group4, read 1 | [download](https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data/Group4_S4_L001_R1_001.fastq.gz) |

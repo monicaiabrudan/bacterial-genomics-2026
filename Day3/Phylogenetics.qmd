@@ -308,8 +308,6 @@ We are going to integrate assemblies from a genome called "CTMA_1441" into our m
 
 The short read assembly is called `CTMA_1441.unicycler-short.fasta`.
 
-Download it from Github using wget from <https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/CTMA_1441.unicycler-short.fasta>
-
 We can add the short-read assembly to snippy like this:
 
 ```         
@@ -320,13 +318,11 @@ snippy --outdir CTMA_1441.short --ctgs CTMA_1441.unicycler-short.fasta --ref ref
 
 ### Map a long-read assembly to reference {#map-a-long-read-assembly-to-reference}
 
-We now need to map the two long read assemblies to our analysis: - `CTMA_1441.filtreads.dragonflye.long_4.1_polish.contigs.fa` - `CTMA_1441.filtreads.dragonflye.long_4.1_nopolish.contigs.fa`
+We now need to map the two long read assemblies to our analysis.
 
-Download these two assemblies from Github using wget:
+These are found into the Phylogenetics folder.
 
-<https://github.com/WCSCourses/GenEpiLAC2025/blob/main/course_data_2025/mapping_and_phylo/CTMA_1441.filtreads.dragonflye.long_4.1_nopolish.contigs.fa>
-
-<https://github.com/WCSCourses/GenEpiLAC2025/blob/main/course_data_2025/mapping_and_phylo/CTMA_1441.filtreads.dragonflye.long_4.1_polish.contigs.fa>
+`CTMA_1441.filtreads.dragonflye.long_4.1_polish.contigs.fa` - `CTMA_1441.filtreads.dragonflye.long_4.1_nopolish.contigs.fa`
 
 Adapt the code examples provided above to run `snippy` on the long-read assemblies using the output directories `CTMA_1441.long_polish` and `CTMA_1441.long_nopolish`.
 

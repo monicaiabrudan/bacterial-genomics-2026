@@ -477,7 +477,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="map-an-existing-short-read-assembly" class="level3">
 <h3 class="anchored" data-anchor-id="map-an-existing-short-read-assembly">Map an existing short-read assembly</h3>
 <p>The short read assembly is called <code>CTMA_1441.unicycler-short.fasta</code>.</p>
-<p>Download it from Github using wget from <a href="https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/CTMA_1441.unicycler-short.fasta" class="uri">https://github.com/monicaiabrudan/bacterial-genomics-2025/blob/main/Day3/CTMA_1441.unicycler-short.fasta</a></p>
 <p>We can add the short-read assembly to snippy like this:</p>
 <pre><code>snippy --outdir CTMA_1441.short --ctgs CTMA_1441.unicycler-short.fasta --ref references/Vibrio_cholerae_O1_biovar_eltor_str_N16961_v2.fa --cpus 4 --ram 4 --force --quiet</code></pre>
 <div class="quarto-figure quarto-figure-center">
@@ -489,10 +488,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="map-a-long-read-assembly-to-reference" class="level3">
 <h3 class="anchored" data-anchor-id="map-a-long-read-assembly-to-reference">Map a long-read assembly to reference</h3>
-<p>We now need to map the two long read assemblies to our analysis: - <code>CTMA_1441.filtreads.dragonflye.long_4.1_polish.contigs.fa</code> - <code>CTMA_1441.filtreads.dragonflye.long_4.1_nopolish.contigs.fa</code></p>
-<p>Download these two assemblies from Github using wget:</p>
-<p><a href="https://github.com/WCSCourses/GenEpiLAC2025/blob/main/course_data_2025/mapping_and_phylo/CTMA_1441.filtreads.dragonflye.long_4.1_nopolish.contigs.fa" class="uri">https://github.com/WCSCourses/GenEpiLAC2025/blob/main/course_data_2025/mapping_and_phylo/CTMA_1441.filtreads.dragonflye.long_4.1_nopolish.contigs.fa</a></p>
-<p><a href="https://github.com/WCSCourses/GenEpiLAC2025/blob/main/course_data_2025/mapping_and_phylo/CTMA_1441.filtreads.dragonflye.long_4.1_polish.contigs.fa" class="uri">https://github.com/WCSCourses/GenEpiLAC2025/blob/main/course_data_2025/mapping_and_phylo/CTMA_1441.filtreads.dragonflye.long_4.1_polish.contigs.fa</a></p>
+<p>We now need to map the two long read assemblies to our analysis.</p>
+<p>These are found into the Phylogenetics folder.</p>
+<p><code>CTMA_1441.filtreads.dragonflye.long_4.1_polish.contigs.fa</code> - <code>CTMA_1441.filtreads.dragonflye.long_4.1_nopolish.contigs.fa</code></p>
 <p>Adapt the code examples provided above to run <code>snippy</code> on the long-read assemblies using the output directories <code>CTMA_1441.long_polish</code> and <code>CTMA_1441.long_nopolish</code>.</p>
 <p>Examine the results of snippy for each assembly using <code>grep</code>, <code>ls</code> and <code>less</code>.</p>
 <p>What do you notice about the number of variable sites (reported at the end of the snippy run) identified with the different assemblies?</p>
