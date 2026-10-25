@@ -288,9 +288,14 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="assembly-quality-assessment" class="level1">
 <h1>Assembly Quality Assessment</h1>
+<p>Without a reference, QUAST reports basic statistics: number of contigs, total length, N50/L50, largest contig and GC%.</p>
+<p><code>quast.py myassembly/contigs.fasta -o myassembly-quast -t 4</code></p>
 <section id="quast---comprehensive-quality-metrics" class="level3">
 <h3 class="anchored" data-anchor-id="quast---comprehensive-quality-metrics">QUAST - comprehensive quality metrics</h3>
 <pre><code>quast.py /home/ubuntu/analysis/assembly/sample1_spades_auto/scaffolds.fasta /home/ubuntu/analysis/assembly/sample1_spades_k77/scaffolds.fasta /home/ubuntu/analysis/assembly/sample1_unicycler/assembly.fasta -o /home/ubuntu/analysis/assembly/quast_comparison -r /home/ubuntu/Reference/Saureus_reference.fasta -g /home/ubuntu/Reference/Saureus_reference.gff --threads 4</code></pre>
+<ul>
+<li><code>-r reference.fasta</code> (with <code>-g genes.gff</code>) compares against a closely related reference if you have one. That adds genome fraction, misassemblies and so on.</li>
+</ul>
 </section>
 <section id="view-report" class="level3">
 <h3 class="anchored" data-anchor-id="view-report">View report</h3>
