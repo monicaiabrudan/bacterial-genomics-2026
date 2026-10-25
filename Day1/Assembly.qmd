@@ -18,7 +18,7 @@ spades.py -1 sample1_1.clean.fastq.gz -2 sample1_2.clean.fastq.gz -o /home/ubunt
 # SPAdes Assembly (Specific K-mer)
 
 | Common Flags | Meaning | Example | Description |
-|----|----|----|----|
+|------------------|------------------|------------------|------------------|
 | `-t` | **Number of CPU threads** | `-t 4` | Tells SPAdes to use 4 CPU cores for parallel processing. Use more threads if your machine has more cores (e.g., `-t 8` or `-t 16`). |
 | `-m` | **Maximum memory (in GB)** | `-m 8` | Limits SPAdes to use at most 8 GB of RAM. This prevents it from using too much system memory. |
 
@@ -80,11 +80,17 @@ Then run SPAdes again with the reference:
 
 # Assembly Quality Assessment
 
+Without a reference, QUAST reports basic statistics: number of contigs, total length, N50/L50, largest contig and GC%.
+
+`quast.py myassembly/contigs.fasta -o myassembly-quast -t 4`
+
 ### QUAST - comprehensive quality metrics
 
 ```         
 quast.py /home/ubuntu/analysis/assembly/sample1_spades_auto/scaffolds.fasta /home/ubuntu/analysis/assembly/sample1_spades_k77/scaffolds.fasta /home/ubuntu/analysis/assembly/sample1_unicycler/assembly.fasta -o /home/ubuntu/analysis/assembly/quast_comparison -r /home/ubuntu/Reference/Saureus_reference.fasta -g /home/ubuntu/Reference/Saureus_reference.gff --threads 4
 ```
+
+-   `-r reference.fasta` (with `-g genes.gff`) compares against a closely related reference if you have one. That adds genome fraction, misassemblies and so on.
 
 ### View report
 
