@@ -184,13 +184,13 @@ You can read about SAM and BAM formats here:
 
 An example **SAM file** is shown in the image below, along with the 11 mandatory fields of this standard:
 
-![SAM format](https://user-images.githubusercontent.com/65819144/230166077-264a6161-ec8c-47d7-87b7-8e073080a548.jpg){alt="SAMformat"}
+![SAMformat](https://user-images.githubusercontent.com/65819144/230166077-264a6161-ec8c-47d7-87b7-8e073080a548.jpg)
 
 (*Image from [Data Wrangling and Processing for Genomics](https://datacarpentry.org/wrangling-genomics)*)
 
 The meaning of each of these mandatory fields are detailed below:
 
-![SAMformat_fields](https://user-images.githubusercontent.com/65819144/230166180-fb086380-413a-4eef-8781-d0ba2b7e215b.jpg){alt="SAMformat_fields"}
+![SAMformat_fields](https://user-images.githubusercontent.com/65819144/230166180-fb086380-413a-4eef-8781-d0ba2b7e215b.jpg)
 
 In a SAM file, the **Flag** column (usually the second column in an alignment line) is an integer value that encodes various information about a read's alignment using a bitwise representation. Each bit in the flag represents a specific property of the alignment, and the **hexadecimal (Hex)**, **decimal (Dec)**, and **binary** representations can be used to interpret these flags.
 
@@ -406,35 +406,50 @@ Try the following:
 
 -   **Kraken:** Performs k-mer-based taxonomic classification across reads
 
-# Species Identification with Bactinspector
+# Species Identification with Mash
 
-Advantages of using Bactinspector:
+`mkdir -p ~/db && cd ~/db`
 
--   **Runs Mash sketching and distance computation** under the hood.
+`wget https://gembox.cbcb.umd.edu/mash/refseq.genomes.k21s1000.msh`
 
--   Compares your genome’s sketch to curated reference sketches.
+`mash screen -w -p 4 ~/db/refseq.genomes.k21s1000.msh ERR4784794_1.fastq.gz | sort -gr | head`
 
--   Applies empirically defined thresholds for species (and sometimes subspecies).
+Your sample is ***Staphylococcus aureus***. The top hit shares 996 of 1,000 hashes, about 99.98% identity, with p = 0. The rest of the list is Staphylococcus phages, which most likely means prophages carried in its genome.
 
-`bactinspector closest_match -fq "*_2.fastq.gz"`
+**The columns**, left to right:
 
-![](images/bactinspector.png)
+| Column | Example | Meaning |
+|----|----|----|
+| Identity | 0.999809 | Estimated nucleotide identity between your reads and that reference (roughly ANI) |
+| Shared hashes | 996/1000 | How many of the reference’s 1,000 sketch k-mers were found in your reads. This shows how much of the reference genome is present. |
+| Median multiplicity | 56 | Median count of those k-mers in your reads, roughly the k-mer coverage. Read depth is a bit higher. |
+| p-value | 0 | Chance the match is random; 0 means extremely significant |
+| Reference ID / description | GCF_001225545… S. aureus | What it matched |
 
-Tidy up the output \*.tsv file
+**What your hits mean:**
 
-`tail -n +2 *.tsv| column -t | less -S`\
-`cat *.tsv | tr "\t" "~" | cut -d"~" -f2`
+-   **Line 1: species.** Identity above 0.95 means the same species, and 0.9998 is near-identical. S. aureus at about 56x k-mer depth is a good depth for assembly.
 
-*Eg of a result:*
+-   **Line 2: phage tp310-3,** 931/1000 at 0.997. Almost the whole phage genome is present, so this strain very likely carries this prophage or a close relative.
 
-*ASM289538v1*
+-   **Lines 3–4: tp310-1 and phiBU01,** about 290/1000. Only part of each phage is present, probably shared modules from related prophages rather than the complete phages.
 
-*GCF_002895385*
+-   **Lines 5–10, including the PVL phages,** at 40–92/1000. Only small fragments are shared, which is typical of the mosaic nature of Staphylococcus phages. **Don’t treat these as evidence that the strain carries PVL.** Check for the toxin genes `lukS-PV`/`lukF-PV` directly with abricate or AMRFinderPlus on the assembly.
 
-***How do you interpret the results? Look up your results in ENA.***
+**Checking for contamination:** nothing in the top 10 suggests it, since all hits are S. aureus or its phages. To be sure, look for non-Staphylococcus hits with high shared hashes:
 
-*In your browser, type*
+bash
 
-[*https://www.ebi.ac.uk/ena/browser/text-search?query=ASM289538v1*](https://www.ebi.ac.uk/ena/browser/text-search?query=ASM289538v1)
+```         
+grep -v Staphylococcus mash-output.txt | sort -gr | head
+```
 
-3.  ![](images/ENA%20search%20result.png)
+# Which genome of Staphylococcus aureus is closest you your genome?
+
+RefSeq assembly **GCF_001225545.1**, a draft S. aureus genome in 42 scaffolds. The name `4395_8#10` is a Wellcome Sanger Institute sequencing lane and tag, and **ERS002263** is the ENA sample accession. So it’s a Sanger-sequenced isolate, probably from one of the large Sanger S. aureus surveillance studies. I tried to look up its strain and sequence type on ENA, but my web lookup was rate-limited, so you’ll need to check it yourself:
+
+-   **ENA:** <https://www.ebi.ac.uk/ena/browser/view/ERS002263> lists the strain, country, date and study.
+
+-   **NCBI:** <https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_001225545.1/> has the assembly details.
+
+`curl -s "https://api.ncbi.nlm.nih.gov/datasets/v2/genome/accession/GCF_001225545.1/dataset_report" | python3 -m json.tool | grep -iE 'strain|isolate|geo_loc|collection|bioproject|title'`
