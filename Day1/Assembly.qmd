@@ -54,29 +54,15 @@ Eg (this will take around 20 minutes to run!)
 
 Find your reference genome.
 
-Which was the reference genome you found using Bactinspector for the sample G18252308?
+Which was the reference genome you found using Mash for the sample G18252308?
 
-Download the fasta file:
-
-Eg: Try this in your browser: <https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_002895385.1?download=true&gzip=true>
+Go to <https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_001225545.1/> and download the .fna file.
 
 Move the downloaded file to the Data/Reference folder
 
 Then run SPAdes again with the reference:
 
-`spades.py -1 reads_1.fastq -2 reads_2.fastq--trusted-contigs reference.fasta --careful -o spades_ref_assembly/`
-
-# Unicycler Hybrid Assembly
-
-(We will not run this in the classroom)
-
-### Hybrid assembly (short + long reads)
-
-`unicycler -1 sample1_1.clean.fastq.gz -2 sample1_2.clean.fastq.gz -l sample1_nanopore.fastq.gz -o /home/ubuntu/analysis/assembly/sample1_unicycler -t 4`
-
-### Short-read only mode (for comparison)
-
-`unicycler -1 sample1_1.clean.fastq.gz -2 sample1_2.clean.fastq.gz -o /home/ubuntu/analysis/assembly/sample1_unicycler_short -t 4`
+`spades.py -1 reads_1.fastq -2 reads_2.fastq --trusted-contigs reference.fasta --careful -o spades_ref_assembly/`
 
 # Assembly Quality Assessment
 

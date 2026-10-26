@@ -267,24 +267,11 @@ ul.task-list li input[type="checkbox"] {
 <section id="spades-assembly-with-a-reference-genome" class="level1">
 <h1>SPAdes Assembly with a reference genome</h1>
 <p>Find your reference genome.</p>
-<p>Which was the reference genome you found using Bactinspector for the sample G18252308?</p>
-<p>Download the fasta file:</p>
-<p>Eg: Try this in your browser: <a href="https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_002895385.1?download=true&amp;gzip=true" class="uri">https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_002895385.1?download=true&amp;gzip=true</a></p>
+<p>Which was the reference genome you found using Mash for the sample G18252308?</p>
+<p>Go to <a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_001225545.1/" class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_001225545.1/</a> and download the .fna file.</p>
 <p>Move the downloaded file to the Data/Reference folder</p>
 <p>Then run SPAdes again with the reference:</p>
-<p><code>spades.py -1 reads_1.fastq -2 reads_2.fastq--trusted-contigs reference.fasta --careful -o spades_ref_assembly/</code></p>
-</section>
-<section id="unicycler-hybrid-assembly" class="level1">
-<h1>Unicycler Hybrid Assembly</h1>
-<p>(We will not run this in the classroom)</p>
-<section id="hybrid-assembly-short-long-reads" class="level3">
-<h3 class="anchored" data-anchor-id="hybrid-assembly-short-long-reads">Hybrid assembly (short + long reads)</h3>
-<p><code>unicycler -1 sample1_1.clean.fastq.gz -2 sample1_2.clean.fastq.gz -l sample1_nanopore.fastq.gz -o /home/ubuntu/analysis/assembly/sample1_unicycler -t 4</code></p>
-</section>
-<section id="short-read-only-mode-for-comparison" class="level3">
-<h3 class="anchored" data-anchor-id="short-read-only-mode-for-comparison">Short-read only mode (for comparison)</h3>
-<p><code>unicycler -1 sample1_1.clean.fastq.gz -2 sample1_2.clean.fastq.gz -o /home/ubuntu/analysis/assembly/sample1_unicycler_short -t 4</code></p>
-</section>
+<p><code>spades.py -1 reads_1.fastq -2 reads_2.fastq --trusted-contigs reference.fasta --careful -o spades_ref_assembly/</code></p>
 </section>
 <section id="assembly-quality-assessment" class="level1">
 <h1>Assembly Quality Assessment</h1>
