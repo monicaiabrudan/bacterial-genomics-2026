@@ -22,6 +22,7 @@ website:
           - Day3/Genomic_epidemiology.qmd
           - Day3/GenEpi_Surveillance.qmd
           - resources.qmd
+          - Assessment/assessment.qmd
 
   page-footer: 
     left: "This work is licensed under a Creative Commons Attribution 4.0 International License. Reuse is encouraged with acknowledgement" 
