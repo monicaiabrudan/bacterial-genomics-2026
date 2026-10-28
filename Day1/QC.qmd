@@ -374,7 +374,7 @@ Output:
 Where
 
 | Column | Meaning | Interpretation |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 |  |  |  |
 | **1. Reference** | The reference genome or sketch file used for comparison | e.g. `reference.msh` (your known genome) |
 | **2. Query** | The genome or sketch being tested | e.g. `sample.msh` (your isolate or unknown genome) |

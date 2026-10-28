@@ -18,7 +18,7 @@ spades.py -1 sample1_1.clean.fastq.gz -2 sample1_2.clean.fastq.gz -o /home/ubunt
 # SPAdes Assembly (Specific K-mer)
 
 | Common Flags | Meaning | Example | Description |
-|------------------|------------------|------------------|------------------|
+|----|----|----|----|
 | `-t` | **Number of CPU threads** | `-t 4` | Tells SPAdes to use 4 CPU cores for parallel processing. Use more threads if your machine has more cores (e.g., `-t 8` or `-t 16`). |
 | `-m` | **Maximum memory (in GB)** | `-m 8` | Limits SPAdes to use at most 8 GB of RAM. This prevents it from using too much system memory. |
 
