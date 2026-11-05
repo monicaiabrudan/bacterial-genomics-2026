@@ -31,7 +31,7 @@ You need four FASTQ files (25–28 MB each) and the CP000886 reference genome. W
 | `Group4_S4_L001_R2_001.fastq.gz` | Group4, read 2 | [download](https://raw.githubusercontent.com/WCSCourses/Genome-Sequence-Analysis-Standardised-Resources/main/course_modules/Projects/project2/data/Group4_S4_L001_R2_001.fastq.gz) |
 | `CP000886.fasta` | Reference, *S.* Paratyphi B SPB7 | [download](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CP000886&rettype=fasta&retmode=text) (save as `CP000886.fasta`) |
 
-All four read files are also listed in the project data folder on GitHub, and the reference record is on [NCBI](https://www.ncbi.nlm.nih.gov/nuccore/CP000886).
+All four read files are also listed in [the project data folder on GitHub](https://github.com/monicaiabrudan/bacterial-genomics-2026/tree/main/Assessment/files), and the reference record is on [NCBI](https://www.ncbi.nlm.nih.gov/nuccore/CP000886).
 
 ``` bash
 mkdir -p /home/ubuntu/Data/Project/{reads,reference,QC,snippy,assembly}
@@ -221,4 +221,4 @@ Combine Tasks 1–5 into one verdict for the head of the institute.
 | Genome fraction (%)                           |        |        |
 | Mismatches / indels per 100 kbp               |        |        |
 
-**Discussion points to include into your summary (20 points): The verdict in one sentence; - is the sequencing instrument good enough?**
+**A critial discussion, to include into your summary : is the sequencing instrument good enough?** (20 points)
